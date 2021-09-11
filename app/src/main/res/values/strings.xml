@@ -2,4 +2,6 @@
     <string name="app_name">LunchBox</string>
     <string name="productName">productName</string>
     <string name="description">description</string>
+    <string name="price">price</string>
+    <string name="productListView">productListView</string>
 </resources>
