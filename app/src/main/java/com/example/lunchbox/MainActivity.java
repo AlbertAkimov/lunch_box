@@ -6,7 +6,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.adapter.product.ProductListAdapter;
 import com.example.model.Product;
-import com.example.service.NetworkService;
+import com.example.service.AbstractNetworkService;
+import com.example.service.ProductNetworkService;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.BiConsumer;
@@ -23,22 +24,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
- /*       ListView listView = (ListView) findViewById(R.id.listView);
-
-        ArrayList<Product> products = new ArrayList<>();
-        products.add(new Product(1L, "Test 1", "123", new Price(1L, 15.0), "drawable://" + R.drawable.test_1));
-        products.add(new Product(1L, "Test 2", "123", new Price(1L, 25.0), "drawable://" + R.drawable.test_1));
-        products.add(new Product(1L, "Test 3", "123", new Price(1L, 35.0), "drawable://" + R.drawable.test_1));
-        products.add(new Product(1L, "Test 4", "123", new Price(1L, 45.0), "drawable://" + R.drawable.test_1));
-        products.add(new Product(1L, "Test 5", "123", new Price(1L, 55.0), "drawable://" + R.drawable.test_1));
-        products.add(new Product(1L, "Test 6", "123", new Price(1L, 65.0), "drawable://" + R.drawable.test_1));
-        products.add(new Product(1L, "Test 7", "123", new Price(1L, 75.0), "drawable://" + R.drawable.test_1));
-
-        ProductListAdapter adapter = new ProductListAdapter(this, R.layout.activity_product, products);
-        listView.setAdapter(adapter);*/
         ListView listView = (ListView) findViewById(R.id.listView);
 
-        NetworkService service = new NetworkService();
+        ProductNetworkService service = new ProductNetworkService();
         disposable.add(service.getService().getAll()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -1,6 +1,7 @@
 package com.example.service;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import okhttp3.*;
 import okhttp3.logging.HttpLoggingInterceptor;
 import org.jetbrains.annotations.NotNull;
@@ -18,16 +19,15 @@ import java.io.IOException;
  */
 
 @Data
-public class NetworkService {
+public abstract class AbstractNetworkService {
 
-    protected ProductService service;
+    protected final Retrofit retrofit;
 
-    public NetworkService() {
-        Retrofit retrofit = createRetrofit();
-        service = retrofit.create(ProductService.class);
+    public AbstractNetworkService() {
+        retrofit = createRetrofit();
     }
 
-    private Retrofit createRetrofit() {
+    protected Retrofit createRetrofit() {
         return new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2/test_01/hs/LunchBoxApi/V1/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -36,7 +36,7 @@ public class NetworkService {
                 .build();
     }
 
-    private OkHttpClient createOkHttpClient() {
+    protected OkHttpClient createOkHttpClient() {
 
         final OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
                 .authenticator(getBasicAuth("admin", "123456"));
