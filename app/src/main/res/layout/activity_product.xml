@@ -14,7 +14,11 @@
         <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="88dp"
-                android:layout_weight="50"
+                android:layout_weight="58"
+                android:layout_gravity="left"
+                android:gravity="left"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="false"
                 android:id="@+id/image">
 
         </ImageView>
@@ -23,16 +27,16 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="50">
+                android:layout_weight="42">
 
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:layout_weight="50"
+                    android:layout_weight="0"
                     android:id="@+id/nameProduct"
                     android:textStyle="bold"
-                    android:gravity="center"
-                    android:textAlignment="center"
+                    android:gravity="left"
+
                     android:text="@string/productName">
 
             </TextView>
@@ -40,11 +44,10 @@
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:layout_weight="50"
+                    android:layout_weight="0"
                     android:id="@+id/description"
                     android:textStyle="bold"
-                    android:gravity="center"
-                    android:textAlignment="center"
+                    android:gravity="left"
                     android:text="@string/description">
 
             </TextView>
@@ -52,11 +55,10 @@
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:layout_weight="50"
+                    android:layout_weight="0"
                     android:id="@+id/price"
                     android:textStyle="bold"
-                    android:gravity="center"
-                    android:textAlignment="center"
+                    android:gravity="left"
                     android:text="@string/price">
 
             </TextView>
@@ -66,13 +68,17 @@
         <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="88dp"
-                android:layout_weight="50"
+                android:layout_weight="0"
+                android:layout_gravity="center"
                 android:id="@+id/addToBasket"
-                android:src="@android:drawable/ic_input_add"
+                android:src="@mipmap/add_to_basket"
                 android:background="@android:color/transparent">
 
         </ImageButton>
 
     </LinearLayout>
 
+
 </LinearLayout>
+
+

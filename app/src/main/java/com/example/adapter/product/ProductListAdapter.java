@@ -7,14 +7,16 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.example.lunchbox.R;
 import com.example.model.Product;
+import com.example.model.ProductBasket;
 import com.example.view.product.ProductView;
+import lombok.Data;
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
@@ -23,10 +25,12 @@ import java.util.List;
  * @Date: 04.09.2021
  * @Description:
  */
+
 public class ProductListAdapter extends ArrayAdapter<Product> {
 
     private final Context mContext;
     private final int mResource;
+    private List<ProductBasket> basketList;
 
     public ProductListAdapter(@NonNull Context context, int resource, @NonNull List<Product> objects) {
         super(context, resource, objects);
@@ -70,6 +74,15 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
         productView.getName().setText(name);
         productView.getDescription().setText(description);
         productView.getPrice().setText(price.toString());
+
+        ImageButton buttonAddToBasket = convertView.findViewById(R.id.addToBasket);
+        buttonAddToBasket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                basketList.add(
+                        new ProductBasket(ProductListAdapter.this.getItem(position), 1L));
+            }
+        });
 
         return convertView;
     }
