@@ -17,6 +17,7 @@ import com.example.view.product.ProductView;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,7 +32,7 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
 
     private final Context mContext;
     private final int mResource;
-    private List<ProductCart> basketList;
+    private List<ProductCart> basketList = new ArrayList<>();
 
     public ProductListAdapter(@NonNull Context context, int resource, @NonNull List<Product> objects) {
         super(context, resource, objects);

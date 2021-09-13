@@ -40,13 +40,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //TODO delete comment
-/*        View footer = findViewById(R.id.footer);
-        Button cart = new Button(this);
-        cart.setText("GO TO CART");
-
-        listView.addFooterView(footer);*/
-
         ProductNetworkService service = new ProductNetworkService();
         disposable.add(service.getService().getAll()
                 .subscribeOn(Schedulers.io())
@@ -64,24 +57,4 @@ public class MainActivity extends AppCompatActivity {
                 }));
 
     }
-
-    //TODO used menu off
-/*    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.menu, menu);
-
-        MenuItem item = menu.findItem(R.id.cart);
-
-        Button button = (Button) item.getActionView();
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Работает", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        return true;
-    }*/
 }
