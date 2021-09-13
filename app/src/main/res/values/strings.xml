@@ -1,7 +1,10 @@
 <resources>
-    <string name="app_name">LunchBox</string>
+    <string name="app_name">НЛМК - lunch box</string>
     <string name="productName">productName</string>
     <string name="description">description</string>
     <string name="price">price</string>
     <string name="productListView">productListView</string>
+    <string name="cart">cart</string>
+    <string name="productName_shopping_cart">productName_shopping_cart</string>
+    <string name="price_shopping_cart">price_shopping_cart</string>
 </resources>

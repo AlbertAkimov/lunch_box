@@ -12,11 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.example.lunchbox.R;
 import com.example.model.Product;
-import com.example.model.ProductBasket;
+import com.example.model.ProductCart;
 import com.example.view.product.ProductView;
-import lombok.Data;
-import lombok.extern.java.Log;
-import lombok.extern.slf4j.Slf4j;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -26,11 +25,13 @@ import java.util.List;
  * @Description:
  */
 
+@Getter
+@Setter
 public class ProductListAdapter extends ArrayAdapter<Product> {
 
     private final Context mContext;
     private final int mResource;
-    private List<ProductBasket> basketList;
+    private List<ProductCart> basketList;
 
     public ProductListAdapter(@NonNull Context context, int resource, @NonNull List<Product> objects) {
         super(context, resource, objects);
@@ -80,7 +81,7 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
             @Override
             public void onClick(View v) {
                 basketList.add(
-                        new ProductBasket(ProductListAdapter.this.getItem(position), 1L));
+                        new ProductCart(ProductListAdapter.this.getItem(position), 1L));
             }
         });
 

@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductBasket {
+public class ProductCart {
 
     private Product product;
     private Long number;
