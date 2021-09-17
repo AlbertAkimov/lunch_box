@@ -1,9 +1,6 @@
 package com.example.adapter.product;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.example.lunchbox.R;
 import com.example.model.ProductCart;
+import com.example.util.ImageUtil;
 import com.example.view.product.ProductCartView;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @Authot: Albert Akimov
@@ -40,13 +39,6 @@ public class ProductCartAdapter extends ArrayAdapter<ProductCart> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        String name = getItem(position).getProduct().getName();
-        Long price = getItem(position).getProduct().getPrice();
-        Long number = getItem(position).getNumber();
-
-        byte[] decodedString  = Base64.decode(getItem(position).getProduct().getImage(), Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-
         ProductCartView productCartView;
 
         if(convertView == null) {
@@ -65,11 +57,12 @@ public class ProductCartAdapter extends ArrayAdapter<ProductCart> {
             productCartView = (ProductCartView) convertView.getTag();
         }
 
-        productCartView.getImage().setImageBitmap(decodedByte);
+        productCartView.getImage().setImageBitmap(ImageUtil.getDecodeImage(
+                Objects.requireNonNull(getItem(position)).getProduct().getProductImage()));
 
-        productCartView.getName().setText(name);
-        productCartView.getPrice().setText(price.toString());
-        productCartView.getNumber().setText(number.toString());
+        productCartView.getName().setText(Objects.requireNonNull(getItem(position)).getProduct().getProductName());
+        productCartView.getPrice().setText((String) Objects.requireNonNull(getItem(position)).getProduct().getProductPrice().toString());
+        productCartView.getNumber().setText((String) Objects.requireNonNull(getItem(position)).getNumber().toString());
 
         return convertView;
     }

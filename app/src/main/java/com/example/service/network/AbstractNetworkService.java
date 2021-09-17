@@ -1,4 +1,4 @@
-package com.example.service;
+package com.example.service.network;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -53,7 +53,7 @@ public abstract class AbstractNetworkService {
             private int mCounter = 0;
 
             @Override
-            public Request authenticate(Route route, Response response) throws IOException {
+            public Request authenticate(Route route, @NotNull Response response) throws IOException {
                 if (mCounter++ > 0) {
                     return null;
                 } else {

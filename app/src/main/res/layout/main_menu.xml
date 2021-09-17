@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="40dp"
+    android:layout_gravity="bottom"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentLeft="true"
+    android:background="@color/cardview_dark_background"
+    android:orientation="horizontal" >
+    <Button
+        android:id="@+id/footer_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:layout_gravity="bottom"
+        android:background="@android:color/holo_blue_bright"
+        android:paddingRight="0dip"
+        android:text="Меню"/>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_weight="0.5"/>
+    <Button
+        android:id="@+id/footer_card"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:layout_gravity="bottom"
+        android:background="@android:color/holo_blue_bright"
+        android:padding="0dip"
+        android:text="Корзина" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_weight="0.5"/>
+    <Button
+        android:id="@+id/footer_my_orders"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:layout_gravity="bottom"
+        android:background="@android:color/holo_blue_bright"
+        android:padding="0dip"
+        android:text="Заказы" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_weight="0.5"/>
+    <Button
+        android:id="@+id/footer_my_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:layout_weight="1"
+        android:background="@android:color/holo_blue_bright"
+        android:padding="0dip"
+        android:text="Профиль" />
+
+
+</LinearLayout>

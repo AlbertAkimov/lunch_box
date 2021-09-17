@@ -1,8 +1,9 @@
-package com.example.service.interfaces;
+package com.example.service.api;
 
 import com.example.model.Product;
 import io.reactivex.Single;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 import java.util.List;
 
@@ -15,4 +16,8 @@ public interface ProductService {
 
     @GET("product")
     Single<List<Product>> getAll();
+
+    @GET("getProductsByCategoryMenuAndDeliveryDate")
+    Single<List<Product>> getProductByCategoryMenuAndDeliveryDate(
+            @Path("deliveryDate") String date, @Path("categoryMenuId") String categoryMenuId);
 }

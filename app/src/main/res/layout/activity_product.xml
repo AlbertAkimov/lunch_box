@@ -19,7 +19,7 @@
                 android:gravity="left"
                 android:scaleType="fitXY"
                 android:adjustViewBounds="false"
-                android:id="@+id/image">
+                android:id="@+id/productImage">
 
         </ImageView>
 
@@ -33,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_weight="0"
-                    android:id="@+id/nameProduct"
+                    android:id="@+id/productName"
                     android:textStyle="bold"
                     android:gravity="left"
 
@@ -45,7 +45,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_weight="0"
-                    android:id="@+id/description"
+                    android:id="@+id/productDescription"
                     android:textStyle="bold"
                     android:gravity="left"
                     android:text="@string/description">
@@ -56,7 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_weight="0"
-                    android:id="@+id/price"
+                    android:id="@+id/productPrice"
                     android:textStyle="bold"
                     android:gravity="left"
                     android:text="@string/price">

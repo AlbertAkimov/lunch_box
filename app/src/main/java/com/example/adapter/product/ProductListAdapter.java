@@ -1,9 +1,6 @@
 package com.example.adapter.product;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +10,14 @@ import androidx.annotation.Nullable;
 import com.example.lunchbox.R;
 import com.example.model.Product;
 import com.example.model.ProductCart;
+import com.example.util.ImageUtil;
 import com.example.view.product.ProductView;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @Authot: Albert Akimov
@@ -44,15 +43,6 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        String name = getItem(position).getName();
-        String description = getItem(position).getDescription();
-        Long price = getItem(position).getPrice();
-        String image = getItem(position).getImage();
-        Long id = getItem(position).getId();
-
-        byte[] decodedString  = Base64.decode(getItem(position).getImage(), Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-
         ProductView productView;
 
         if(convertView == null){
@@ -60,10 +50,10 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
             convertView = inflater.inflate(mResource, parent, false);
 
             productView = new ProductView();
-            productView.setName(convertView.findViewById(R.id.nameProduct));
-            productView.setDescription(convertView.findViewById(R.id.description));
-            productView.setPrice(convertView.findViewById(R.id.price));
-            productView.setImage(convertView.findViewById(R.id.image));
+            productView.setProductName(convertView.findViewById(R.id.productName));
+            productView.setProductDescription(convertView.findViewById(R.id.productDescription));
+            productView.setProductPrice(convertView.findViewById(R.id.productPrice));
+            productView.setProductImage(convertView.findViewById(R.id.productImage));
 
             convertView.setTag(productView);
         }
@@ -71,11 +61,11 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
             productView = (ProductView) convertView.getTag();
         }
 
-        productView.getImage().setImageBitmap(decodedByte);
+        productView.getProductImage().setImageBitmap(ImageUtil.getDecodeImage(Objects.requireNonNull(getItem(position)).getProductImage()));
 
-        productView.getName().setText(name);
-        productView.getDescription().setText(description);
-        productView.getPrice().setText(price.toString());
+        productView.getProductName().setText(Objects.requireNonNull(getItem(position)).getProductName());
+        productView.getProductDescription().setText(Objects.requireNonNull(getItem(position)).getProductDescription());
+        productView.getProductPrice().setText((String) Objects.requireNonNull(getItem(position)).getProductPrice().toString());
 
         ImageButton buttonAddToBasket = convertView.findViewById(R.id.addToBasket);
         buttonAddToBasket.setOnClickListener(new View.OnClickListener() {

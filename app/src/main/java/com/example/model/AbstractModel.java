@@ -15,6 +15,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AbstractModel {
 
-    private Long id;
+    private String id;
 
 }

@@ -1,6 +1,6 @@
-package com.example.service;
+package com.example.service.network;
 
-import com.example.service.interfaces.ProductService;
+import com.example.service.api.ProductService;
 import lombok.Data;
 
 /**
