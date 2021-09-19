@@ -4,11 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Projects/ANDROID/AndroidStudioProjects/LunchBox/app/src/main/res/layout/activity_category_menu.xml" value="0.36666666666666664" />
-        <entry key="..\:/Projects/ANDROID/AndroidStudioProjects/LunchBox/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/Projects/ANDROID/AndroidStudioProjects/LunchBox/app/src/main/res/layout/activity_delivery_date.xml" value="0.35778985507246375" />
+        <entry key="..\:/Projects/ANDROID/AndroidStudioProjects/LunchBox/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Projects/ANDROID/AndroidStudioProjects/LunchBox/app/src/main/res/layout/activity_main_2_test.xml" value="0.36666666666666664" />
-        <entry key="..\:/Projects/ANDROID/AndroidStudioProjects/LunchBox/app/src/main/res/layout/activity_product.xml" value="0.36666666666666664" />
+        <entry key="..\:/Projects/ANDROID/AndroidStudioProjects/LunchBox/app/src/main/res/layout/activity_product.xml" value="0.33" />
         <entry key="..\:/Projects/ANDROID/AndroidStudioProjects/LunchBox/app/src/main/res/layout/activity_product2.xml" value="0.36666666666666664" />
         <entry key="..\:/Projects/ANDROID/AndroidStudioProjects/LunchBox/app/src/main/res/layout/activity_product_cart.xml" value="0.36666666666666664" />
+        <entry key="..\:/Projects/ANDROID/AndroidStudioProjects/LunchBox/app/src/main/res/layout/activity_product_cart_list_view.xml" value="0.20520833333333333" />
         <entry key="..\:/Projects/ANDROID/AndroidStudioProjects/LunchBox/app/src/main/res/layout/main_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Projects/ANDROID/AndroidStudioProjects/LunchBox/app/src/main/res/layout/testing_01.xml" value="0.36666666666666664" />
       </map>

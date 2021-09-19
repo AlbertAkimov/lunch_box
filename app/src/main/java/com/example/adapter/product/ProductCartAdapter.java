@@ -46,10 +46,10 @@ public class ProductCartAdapter extends ArrayAdapter<ProductCart> {
             convertView = inflater.inflate(mResource, parent, false);
 
             productCartView = new ProductCartView();
-            productCartView.setName(convertView.findViewById(R.id.nameProduct_shopping_cart));
-            productCartView.setPrice(convertView.findViewById(R.id.price_shopping_cart));
-            productCartView.setImage(convertView.findViewById(R.id.image_shopping_cart));
-            productCartView.setNumber(convertView.findViewById(R.id.number_shopping_cart));
+            productCartView.setName(convertView.findViewById(R.id.productCartName));
+            productCartView.setPrice(convertView.findViewById(R.id.productCartPrice));
+            productCartView.setImage(convertView.findViewById(R.id.productCartImage));
+            productCartView.setNumber(convertView.findViewById(R.id.productCartNumber));
 
             convertView.setTag(productCartView);
         }

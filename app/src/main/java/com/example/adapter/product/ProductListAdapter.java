@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.example.App;
 import com.example.lunchbox.R;
 import com.example.model.Product;
 import com.example.model.ProductCart;
@@ -31,12 +33,13 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
 
     private final Context mContext;
     private final int mResource;
-    private List<ProductCart> basketList = new ArrayList<>();
+    private List<ProductCart> basketList;
 
-    public ProductListAdapter(@NonNull Context context, int resource, @NonNull List<Product> objects) {
+    public ProductListAdapter(@NonNull Context context, int resource, @NonNull List<Product> objects, List<ProductCart> cart) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
+        basketList = cart;
     }
 
     @NonNull
@@ -71,6 +74,7 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
         buttonAddToBasket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 basketList.add(
                         new ProductCart(ProductListAdapter.this.getItem(position), 1L));
             }

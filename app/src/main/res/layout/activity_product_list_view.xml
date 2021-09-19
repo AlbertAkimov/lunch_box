@@ -9,7 +9,7 @@
     android:layout_margin="8dp"
     android:background="#FFFFFF"
     app:cardCornerRadius="8dp"
-    tools:context=".CategoryMenuActivity">
+    tools:context=".ProductActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,22 +17,14 @@
         android:background="#FFFFFF"
         android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list"
-            android:layout_width="match_parent"
-            android:layout_height="654dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginBottom="16dp"
-            android:orientation="vertical"
-            android:visibility="visible"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:ignore="RtlSymmetry" />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listView" />
 
     </LinearLayout>
 
+    <include layout="@layout/main_menu" />
 
-    <include layout="@layout/main_menu"/>
 
 </androidx.cardview.widget.CardView>

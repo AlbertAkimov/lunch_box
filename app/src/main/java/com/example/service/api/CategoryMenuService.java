@@ -15,6 +15,6 @@ import java.util.List;
 
 public interface CategoryMenuService {
 
-    @GET("category_menu/{date}")
-    Single<List<CategoryMenu>> getCategoryMenuByDeliveryDate(@Path("date") String date);
+    @GET("category_menu/{deliveryDate}")
+    Single<List<CategoryMenu>> getCategoryMenuByDeliveryDate(@Path("deliveryDate") String date);
 }

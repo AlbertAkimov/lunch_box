@@ -17,7 +17,7 @@ public interface ProductService {
     @GET("product")
     Single<List<Product>> getAll();
 
-    @GET("getProductsByCategoryMenuAndDeliveryDate")
+    @GET("getProductsByCategoryMenuAndDeliveryDate/{deliveryDate}/{categoryMenuId}")
     Single<List<Product>> getProductByCategoryMenuAndDeliveryDate(
             @Path("deliveryDate") String date, @Path("categoryMenuId") String categoryMenuId);
 }

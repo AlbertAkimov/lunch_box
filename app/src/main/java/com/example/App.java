@@ -1,21 +1,36 @@
 package com.example;
 
 import android.app.Application;
+
+import com.example.model.ProductCart;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @Authot: Albert Akimov
  * @Date: 11.09.2021
  * @Description:
  */
+
+@Setter
+@Getter
 public class App extends Application {
+
+    private List<ProductCart> basketList;
 
     @Override
     public void onCreate() {
         super.onCreate();
+
+        basketList = new ArrayList<>();
 
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)

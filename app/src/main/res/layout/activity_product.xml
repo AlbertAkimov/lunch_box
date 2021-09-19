@@ -1,84 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="#FFFFFF"
+    app:cardCornerRadius="8dp">
 
     <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="50"
-            android:weightSum="100">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="50"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
         <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="88dp"
-                android:layout_weight="58"
-                android:layout_gravity="left"
-                android:gravity="left"
-                android:scaleType="fitXY"
-                android:adjustViewBounds="false"
-                android:id="@+id/productImage">
+            android:id="@+id/productImage"
+            android:layout_width="match_parent"
+            android:layout_height="88dp"
+            android:layout_gravity="left"
+            android:layout_weight="58"
+            android:adjustViewBounds="false"
+            android:gravity="left"
+            android:scaleType="fitXY">
 
         </ImageView>
 
         <LinearLayout
-                android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="42"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/productName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="42">
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="0"
+                android:gravity="left"
+                android:text="@string/productName"
 
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_weight="0"
-                    android:id="@+id/productName"
-                    android:textStyle="bold"
-                    android:gravity="left"
-
-                    android:text="@string/productName">
-
-            </TextView>
-
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_weight="0"
-                    android:id="@+id/productDescription"
-                    android:textStyle="bold"
-                    android:gravity="left"
-                    android:text="@string/description">
+                android:textSize="18dp"
+                android:textStyle="bold">
 
             </TextView>
 
             <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_weight="0"
-                    android:id="@+id/productPrice"
-                    android:textStyle="bold"
-                    android:gravity="left"
-                    android:text="@string/price">
+                android:id="@+id/productDescription"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="0"
+                android:gravity="left"
+                android:text="@string/description"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/productPrice"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="0"
+                android:gravity="left"
+                android:text="@string/price"
+                android:textSize="22sp"
+                android:textStyle="bold|italic">
 
             </TextView>
 
         </LinearLayout>
 
         <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="88dp"
-                android:layout_weight="0"
-                android:layout_gravity="center"
-                android:id="@+id/addToBasket"
-                android:src="@mipmap/add_to_basket"
-                android:background="@android:color/transparent">
+            android:id="@+id/addToBasket"
+            android:layout_width="50dp"
+            android:layout_height="88dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="0"
+            android:background="@android:color/transparent"
+            android:src="@mipmap/add_to_basket">
 
         </ImageButton>
 
     </LinearLayout>
 
-
-</LinearLayout>
-
+</androidx.cardview.widget.CardView>
 
