@@ -17,4 +17,5 @@ public class CategoryMenu extends AbstractModel {
 
     private String categoryMenuName;
     private String categoryMenuImage;
+    private String date;
 }

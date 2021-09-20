@@ -25,7 +25,7 @@ public class ViewHolderCategoryMenu extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ProductActivity.start(view.getContext(), "20210914", categoryMenu.getExternalKey());
+                ProductActivity.start(view.getContext(), categoryMenu.getDate(), categoryMenu.getExternalKey());
             }
         });
     }

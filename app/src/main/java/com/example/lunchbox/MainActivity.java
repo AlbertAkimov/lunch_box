@@ -38,7 +38,18 @@ public class MainActivity extends AppCompatActivity {
             datePicker.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
                 @Override
                 public void onDateChanged(DatePicker datePicker, int i, int i1, int i2) {
-                   deliveryDate  = String.valueOf(i) + "0" + i1 + i2;
+
+                    String year = String.valueOf(i);
+                    String mount = String.valueOf(i1);
+                    String day = String.valueOf(i2);
+
+                    if(i1 < 10)
+                        mount = "0" + String.valueOf(i1);
+
+                    if(i2 < 10)
+                        day = "0" + String.valueOf(i2);
+
+                   deliveryDate  = year + mount + day;
                 }
             });
         }
