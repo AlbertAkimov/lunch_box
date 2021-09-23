@@ -37,7 +37,7 @@ public class CartActivity extends AppCompatActivity {
             totalSum += cart.getNumber() * cart.getProduct().getProductPrice();
         }
 
-        total.setText(totalSum.toString());
+        total.setText(totalSum.toString() + " руб.");
 
         adapter = new ProductCartAdapter(CartActivity.this, R.layout.activity_product_cart, app.getBasketList());
 

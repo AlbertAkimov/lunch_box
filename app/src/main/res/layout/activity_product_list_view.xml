@@ -24,7 +24,7 @@
 
     </LinearLayout>
 
-    <include layout="@layout/main_menu" />
+<!--    <include layout="@layout/main_menu" />-->
 
 
 </androidx.cardview.widget.CardView>
