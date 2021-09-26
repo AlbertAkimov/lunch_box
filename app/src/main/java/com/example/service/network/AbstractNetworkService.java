@@ -1,16 +1,27 @@
 package com.example.service.network;
 
+import android.content.Context;
+
+import com.example.util.PropertiesUtil;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import okhttp3.*;
+import lombok.SneakyThrows;
+import okhttp3.Authenticator;
+import okhttp3.Credentials;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.Route;
 import okhttp3.logging.HttpLoggingInterceptor;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import java.io.IOException;
 
 /**
  * @Authot: Albert Akimov
@@ -19,17 +30,31 @@ import java.io.IOException;
  */
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public abstract class AbstractNetworkService {
 
-    protected final Retrofit retrofit;
+    protected Retrofit retrofit;
+    protected Context context;
+    protected String host;
+    protected String baseUrl;
+    protected String username;
+    protected String password;
 
-    public AbstractNetworkService() {
+    @SneakyThrows
+    public AbstractNetworkService(Context context) {
+        this.context = context;
+        host = PropertiesUtil.getProperty("network.host", context);
+        baseUrl = PropertiesUtil.getProperty("network.baseUrl", context);
+        username = PropertiesUtil.getProperty("network.auth.username", context);
+        password = PropertiesUtil.getProperty("network.auth.password", context);
         retrofit = createRetrofit();
     }
 
+    @SneakyThrows
     protected Retrofit createRetrofit() {
         return new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2/test_01/hs/LunchBoxApi/V1/")
+                .baseUrl(host + baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(createOkHttpClient())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -39,7 +64,7 @@ public abstract class AbstractNetworkService {
     protected OkHttpClient createOkHttpClient() {
 
         final OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
-                .authenticator(getBasicAuth("admin", "123456"));
+                .authenticator(getBasicAuth(username, password));
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.level(HttpLoggingInterceptor.Level.BODY);

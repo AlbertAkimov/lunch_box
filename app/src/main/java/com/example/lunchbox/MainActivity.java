@@ -5,24 +5,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.adapter.CategoryMenuAdapter;
-import com.example.adapter.product.ProductCartAdapter;
-import com.example.model.CategoryMenu;
-import com.example.service.network.CategoryMenuNetworkService;
+import com.example.util.DatePickerUtil;
 
-import java.util.Date;
-import java.util.List;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.BiConsumer;
-import io.reactivex.schedulers.Schedulers;
+/**
+ * @Authot: Albert Akimov
+ * @Date: 13.09.2021
+ * @Description:
+ */
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,17 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onDateChanged(DatePicker datePicker, int i, int i1, int i2) {
 
-                    String year = String.valueOf(i);
-                    String mount = String.valueOf(i1);
-                    String day = String.valueOf(i2);
-
-                    if(i1 < 10)
-                        mount = "0" + String.valueOf(i1);
-
-                    if(i2 < 10)
-                        day = "0" + String.valueOf(i2);
-
-                   deliveryDate  = year + mount + day;
+                    deliveryDate = DatePickerUtil.buildDateString(i, i1, i2);
                 }
             });
         }
@@ -61,7 +43,5 @@ public class MainActivity extends AppCompatActivity {
                 CategoryMenuActivity.start(v.getContext(), deliveryDate);
             }
         });
-
     }
-
 }

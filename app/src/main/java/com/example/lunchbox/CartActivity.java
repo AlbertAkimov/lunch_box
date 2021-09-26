@@ -12,7 +12,11 @@ import com.example.App;
 import com.example.adapter.product.ProductCartAdapter;
 import com.example.model.ProductCart;
 
-import java.util.stream.Collectors;
+/**
+ * @Authot: Albert Akimov
+ * @Date: 13.09.2021
+ * @Description:
+ */
 
 public class CartActivity extends AppCompatActivity {
 
@@ -31,6 +35,8 @@ public class CartActivity extends AppCompatActivity {
         App app = (App) getApplication();
 
         TextView total = findViewById(R.id.totalProductCart);
+
+        //TODO - Вынести из этого класс
         Long totalSum = Long.valueOf(0);
 
         for(ProductCart cart: app.getBasketList()) {
@@ -38,6 +44,7 @@ public class CartActivity extends AppCompatActivity {
         }
 
         total.setText(totalSum.toString() + " руб.");
+        //TODO - Вынести из этого класс
 
         adapter = new ProductCartAdapter(CartActivity.this, R.layout.activity_product_cart, app.getBasketList());
 

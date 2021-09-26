@@ -4,22 +4,23 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.App;
 import com.example.lunchbox.R;
 import com.example.model.Product;
 import com.example.model.ProductCart;
 import com.example.util.ImageUtil;
 import com.example.view.product.ProductView;
-import lombok.Getter;
-import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @Authot: Albert Akimov

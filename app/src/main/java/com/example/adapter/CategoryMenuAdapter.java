@@ -11,11 +11,11 @@ import com.example.lunchbox.R;
 import com.example.model.CategoryMenu;
 import com.example.view.ViewHolderCategoryMenu;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @Authot: Albert Akimov

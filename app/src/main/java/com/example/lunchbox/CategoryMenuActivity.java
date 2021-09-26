@@ -5,16 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.App;
 import com.example.adapter.CategoryMenuAdapter;
-import com.example.adapter.product.ProductCartAdapter;
 import com.example.model.CategoryMenu;
 import com.example.service.network.CategoryMenuNetworkService;
 
@@ -24,6 +21,12 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.BiConsumer;
 import io.reactivex.schedulers.Schedulers;
+
+/**
+ * @Authot: Albert Akimov
+ * @Date: 13.09.2021
+ * @Description:
+ */
 
 public class CategoryMenuActivity extends AppCompatActivity {
 
@@ -60,7 +63,7 @@ public class CategoryMenuActivity extends AppCompatActivity {
         });
 
 
-        CategoryMenuNetworkService service = new CategoryMenuNetworkService();
+        CategoryMenuNetworkService service = new CategoryMenuNetworkService(getApplicationContext());
         disposable.add(service.getService().getCategoryMenuByDeliveryDate(EXTRA_DELIVERY_DATE)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -11,6 +11,12 @@ import com.example.model.CategoryMenu;
 import com.example.util.ImageUtil;
 import com.example.view.product.CategoryMenuView;
 
+/**
+ * @Authot: Albert Akimov
+ * @Date: 13.09.2021
+ * @Description:
+ */
+
 public class ViewHolderCategoryMenu extends RecyclerView.ViewHolder {
 
     CategoryMenu categoryMenu;

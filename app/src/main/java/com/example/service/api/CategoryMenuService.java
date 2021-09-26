@@ -1,11 +1,12 @@
 package com.example.service.api;
 
 import com.example.model.CategoryMenu;
+
+import java.util.List;
+
 import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-
-import java.util.List;
 
 /**
  * @Authot: Albert Akimov

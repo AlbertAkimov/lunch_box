@@ -20,6 +20,12 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.BiConsumer;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * @Authot: Albert Akimov
+ * @Date: 13.09.2021
+ * @Description:
+ */
+
 public class ProductActivity extends AppCompatActivity {
 
     private static String EXTRA_DELIVERY_DATE = "ProductActivity.EXTRA_DELIVERY_DATE";
@@ -48,7 +54,7 @@ public class ProductActivity extends AppCompatActivity {
 
         App app = (App) getApplication();
 
-        ProductNetworkService service = new ProductNetworkService();
+        ProductNetworkService service = new ProductNetworkService(getApplicationContext());
         disposable.add(service.getService().getProductByCategoryMenuAndDeliveryDate(
                EXTRA_DELIVERY_DATE,
                 EXTRA_CATEGORY_MENU_ID)

@@ -16,11 +16,12 @@ import com.example.lunchbox.R;
 import com.example.model.ProductCart;
 import com.example.util.ImageUtil;
 import com.example.view.product.ProductCartView;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
 import java.util.Objects;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @Authot: Albert Akimov
@@ -76,20 +77,8 @@ public class ProductCartAdapter extends ArrayAdapter<ProductCart> {
         increase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                ProductCart currentItem = ProductCartAdapter.this.getItem(position);
-                assert currentItem != null;
-                currentItem.setNumber(currentItem.getNumber() + 1);
-
-                productCartView.getNumber().setText((String) currentItem.getNumber().toString());
-
-                Long total = Long.valueOf(0);
-
-                for(ProductCart item : productCartList)
-                    total += item.getNumber() * item.getProduct().getProductPrice();
-
-                setTotal(total.toString());
-
+                changeNumberCurrentPosition(1L, position, productCartView);
+                setTotal();
             }
         });
 
@@ -97,32 +86,34 @@ public class ProductCartAdapter extends ArrayAdapter<ProductCart> {
         decrease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                ProductCart currentItem = ProductCartAdapter.this.getItem(position);
-                assert currentItem != null;
-                if(currentItem.getNumber() - 1 == 0)
-                    ProductCartAdapter.this.remove(currentItem);
-                else
-                    currentItem.setNumber(currentItem.getNumber() - 1);
-
-                productCartView.getNumber().setText((String) currentItem.getNumber().toString());
-
-                Long total = Long.valueOf(0);
-
-                for(ProductCart item : productCartList)
-                    total += item.getNumber() * item.getProduct().getProductPrice();
-
-                setTotal(total.toString());
-
+                changeNumberCurrentPosition(-1L, position, productCartView);
+                setTotal();
             }
         });
 
         return convertView;
     }
 
-    public void setTotal(String total) {
+    public void setTotal() {
+
+        Long total = 0L;
+        for(ProductCart item : productCartList)
+            total += item.getNumber() * item.getProduct().getProductPrice();
+
         CartActivity cartActivity = (CartActivity) mContext;
         TextView mTotal = cartActivity.findViewById(R.id.totalProductCart);
-        mTotal.setText(total + " руб.");
+        mTotal.setText(String.valueOf(total) + " руб.");
+    }
+
+    public void changeNumberCurrentPosition(Long value, int position, ProductCartView view) {
+
+        ProductCart currentItem = ProductCartAdapter.this.getItem(position);
+        assert currentItem != null;
+        if(currentItem.getNumber() + value == 0)
+            ProductCartAdapter.this.remove(currentItem);
+        else
+            currentItem.setNumber(currentItem.getNumber() + value);
+
+        view.getNumber().setText((String) currentItem.getNumber().toString());
     }
 }
