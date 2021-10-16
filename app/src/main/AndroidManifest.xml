@@ -29,6 +29,14 @@
             android:name=".CartActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".AuthenticationActivity"
+            android:exported="true" />
+        <activity
+            android:name=".DeliveryDateActivity"
+            android:exported="true" />
+
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

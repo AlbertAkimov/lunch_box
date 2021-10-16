@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:layout_gravity="center"
+    android:background="@drawable/login_backgraund_2"
+    app:cardCornerRadius="8dp"
+    tools:context=".AuthenticationActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="50"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Авторизация в системе доставка"
+            android:textStyle="bold"
+            android:textSize="24dp">
+        </TextView>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+
+        <EditText
+            android:id="@+id/username"
+            android:hint="Имя пользователя"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/password"
+            android:hint="Пароль"
+            android:textSize="18dp"
+            android:password="true"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </EditText>
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="10dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="false"
+            android:text="Авторизоваться"
+            android:id="@+id/login">
+
+        </Button>
+
+    </LinearLayout>
+
+<!--    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />-->
+
+</androidx.cardview.widget.CardView>
+

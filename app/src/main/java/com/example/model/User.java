@@ -6,16 +6,15 @@ import lombok.NoArgsConstructor;
 
 /**
  * @Authot: Albert Akimov
- * @Date: 04.09.2021
+ * @Date: 07.10.2021
  * @Description:
  */
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class AbstractModel {
+@AllArgsConstructor
+public class User extends AbstractModel {
 
-    // TODO - rename to ID
-    private String externalKey;
-
+    private String username;
+    private String password;
 }
