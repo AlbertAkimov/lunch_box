@@ -24,7 +24,6 @@ public class DeliveryDateActivity extends AppCompatActivity {
 
     public static void start(Context caller) {
         Intent intent = new Intent(caller, DeliveryDateActivity.class);
-
         caller.startActivity(intent);
     }
 

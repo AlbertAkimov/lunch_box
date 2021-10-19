@@ -1,10 +1,8 @@
 package com.example.service.callback;
 
-import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.example.lunchbox.DeliveryDateActivity;
 import com.example.lunchbox.MainActivity;
 import com.example.model.User;
 
@@ -18,18 +16,17 @@ import retrofit2.HttpException;
  * @Description:
  */
 
-public class AuthenticationCallBack extends AbstractCallBack<User> {
+public class RecoveryPasswordCallBack extends AbstractCallBack<User>{
 
-    public AuthenticationCallBack(Context context) {
+    public RecoveryPasswordCallBack(Context context) {
         super(context);
     }
+
     @Override
     public void accept(List<User> result, Throwable throwable) throws Exception {
-        if(throwable != null)
+        if (throwable != null)
             Toast.makeText(context, throwable.getMessage(), Toast.LENGTH_SHORT).show();
-        else {
-            DeliveryDateActivity.start(context);
-            ((Activity) context).finish();
-        }
+        else
+            MainActivity.start(context);
     }
 }

@@ -10,8 +10,7 @@
     android:layout_gravity="center"
     android:background="@color/white"
     app:cardCornerRadius="8dp"
-    tools:context=".AuthenticationActivity">
-
+    tools:context=".AccessRecoveryActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +22,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Авторизация в системе доставка"
+            android:text="Восстановление пароля учетной записи"
             android:gravity="center"
             android:textStyle="bold"
             android:textSize="24dp">
@@ -33,31 +32,21 @@
             android:layout_width="wrap_content"
             android:layout_height="20dp"/>
 
+
         <EditText
-            android:id="@+id/username"
-            android:hint="Имя пользователя"
+            android:id="@+id/email"
+            android:hint="Электронная почта"
             android:textSize="18dp"
             android:textStyle="bold"
             android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </EditText>
-
-        <EditText
-            android:id="@+id/password"
-            android:hint="Пароль"
-            android:textSize="18dp"
-            android:password="true"
-            android:textStyle="bold"
-            android:gravity="center"
+            android:autoLink="email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
         </EditText>
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="10dp"/>
+            android:layout_height="20dp"/>
 
         <Button
             android:layout_width="match_parent"
@@ -65,29 +54,12 @@
             android:gravity="center"
             android:scaleType="fitXY"
             android:adjustViewBounds="false"
-            android:text="Авторизоваться"
-            android:id="@+id/login">
-
-        </Button>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:scaleType="fitXY"
-            android:adjustViewBounds="false"
-            android:text="Восстановить пароль"
-            android:id="@+id/restore_password">
+            android:text="Восстановить"
+            android:id="@+id/send_email">
 
         </Button>
 
     </LinearLayout>
-
-<!--    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />-->
 
 </androidx.cardview.widget.CardView>
 

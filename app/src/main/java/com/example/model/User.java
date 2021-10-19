@@ -16,5 +16,7 @@ import lombok.NoArgsConstructor;
 public class User extends AbstractModel {
 
     private String username;
-    private String password;
+    private String email;
+    private String personalNumber;
+
 }

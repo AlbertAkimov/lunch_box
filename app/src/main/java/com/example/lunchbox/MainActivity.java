@@ -1,5 +1,7 @@
 package com.example.lunchbox;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,8 +10,8 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.model.User;
-import com.example.service.network.UserNetworkService;
 import com.example.service.manager.AuthenticationDataLoadManager;
+import com.example.service.network.UserNetworkService;
 
 import java.util.List;
 
@@ -28,37 +30,38 @@ public class MainActivity extends AppCompatActivity {
     EditText password;
     CompositeDisposable disposable = new CompositeDisposable();
 
+    public static void start(Context caller)  {
+        Intent intent = new Intent(caller, MainActivity.class);
+        caller.startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
 
+        //TODO - Возможно нужно вынести слой сервиса в менеджер загрузки данных.
+        UserNetworkService service = new UserNetworkService(getApplicationContext());
+
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
 
         Button login = findViewById(R.id.login);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        login.setOnClickListener(view -> {
 
-                UserNetworkService service = new UserNetworkService(getApplicationContext());
+            //TODO - Возможно нужно вынести слой сервиса в менеджер загрузки данных.
+            Single<List<User>> single = service.
+                    getService().login(username.getText().toString(), password.getText().toString());
 
-                Single<List<User>> single = service.
-                        getService().login(username.getText().toString(), password.getText().toString());
+            AuthenticationDataLoadManager dataLoadManager = new AuthenticationDataLoadManager(view.getContext(), disposable);
+            dataLoadManager.execute(single);
 
-                AuthenticationDataLoadManager test = new AuthenticationDataLoadManager(view.getContext(), disposable);
-                test.execute(single);
-/*                disposable.add(service.getService().login(username.getText().toString(), password.getText().toString())
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe((dates, throwable) -> {
-                            if (throwable != null)
-                                Toast.makeText(MainActivity.this, ((HttpException) throwable).message(), Toast.LENGTH_SHORT).show();
-                             else
-                                DeliveryDateActivity.start(MainActivity.this);
-                        }));*/
-                //findViewById(R.id.progress).setVisibility(View.GONE);
-            }
+        });
+
+        Button restorePassword = findViewById(R.id.restore_password);
+        restorePassword.setOnClickListener(view -> {
+            AccessRecoveryActivity.start(view.getContext());
+            finishAffinity();
         });
     }
 

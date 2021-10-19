@@ -36,6 +36,14 @@
             android:name=".DeliveryDateActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".AccessRecoveryActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".RecoveryPasswordActivity"
+            android:exported="true" />
+
 
         <activity android:name=".MainActivity">
             <intent-filter>
