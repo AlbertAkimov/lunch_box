@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.database.AppDatabase;
 import com.example.model.User;
 import com.example.service.manager.AuthenticationDataLoadManager;
 import com.example.service.network.UserNetworkService;
@@ -42,23 +43,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
 
-        //TODO - Возможно нужно вынести слой сервиса в менеджер загрузки данных.
-        UserNetworkService service = new UserNetworkService(getApplicationContext());
-
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
 
-        Button login = findViewById(R.id.login);
+        UserNetworkService service = new UserNetworkService(getApplicationContext());
+        service.autoLogin(disposable, username);
 
+        Button login = findViewById(R.id.login);
         login.setOnClickListener(view -> {
 
-            //TODO - Возможно нужно вынести слой сервиса в менеджер загрузки данных.
-            Single<List<User>> single = null;
-            single = service.getService().login(username.getText().toString(), SHAUtil.hashPassword(password.getText().toString()));
-
-            AuthenticationDataLoadManager dataLoadManager = new AuthenticationDataLoadManager(view.getContext(), disposable);
-            dataLoadManager.execute(single);
-
+            service.login(
+                    username.getText().toString(),
+                    SHAUtil.hashPassword(password.getText().toString()),
+                    disposable);
         });
 
         Button restorePassword = findViewById(R.id.restore_password);

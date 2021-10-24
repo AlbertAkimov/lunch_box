@@ -16,6 +16,7 @@ import com.example.model.CategoryMenu;
 import com.example.service.network.CategoryMenuNetworkService;
 
 import java.util.List;
+import java.util.Objects;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -39,7 +40,6 @@ public class CategoryMenuActivity extends AppCompatActivity {
         Intent intent = new Intent(caller, CategoryMenuActivity.class);
         intent.putExtra(EXTRA_DELIVERY_DATE, date);
 
-        EXTRA_DELIVERY_DATE = date;
         caller.startActivity(intent);
     }
 
@@ -64,17 +64,15 @@ public class CategoryMenuActivity extends AppCompatActivity {
 
 
         CategoryMenuNetworkService service = new CategoryMenuNetworkService(getApplicationContext());
-        disposable.add(service.getService().getCategoryMenuByDeliveryDate(EXTRA_DELIVERY_DATE)
+        disposable.add(service.getService().getCategoryMenuByDeliveryDate(
+                Objects.requireNonNull(getIntent().getExtras()).getString(EXTRA_DELIVERY_DATE))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BiConsumer<List<CategoryMenu>, Throwable>() {
-                    @Override
-                    public void accept(List<CategoryMenu> dates, Throwable throwable) throws Exception {
-                        if (throwable != null) {
-                            Toast.makeText(CategoryMenuActivity.this, "Data loading error", Toast.LENGTH_SHORT).show();
-                        } else {
-                            adapter.setDates(dates);
-                        }
+                .subscribe((dates, throwable) -> {
+                    if (throwable != null) {
+                        Toast.makeText(CategoryMenuActivity.this, "Data loading error", Toast.LENGTH_SHORT).show();
+                    } else {
+                        adapter.setDates(dates);
                     }
                 }));
     }

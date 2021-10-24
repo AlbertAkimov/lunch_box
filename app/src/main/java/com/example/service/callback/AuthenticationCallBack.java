@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.example.database.AppDatabase;
 import com.example.lunchbox.DeliveryDateActivity;
 import com.example.lunchbox.MainActivity;
 import com.example.model.User;
+import com.example.util.SHAUtil;
 
 import java.util.List;
 
@@ -28,8 +30,17 @@ public class AuthenticationCallBack extends AbstractCallBack<User> {
         if(throwable != null)
             Toast.makeText(context, throwable.getMessage(), Toast.LENGTH_SHORT).show();
         else {
+
+            User user = new User();
+            user.setUsername(result.get(0).getUsername());
+            user.setPassword(result.get(0).getPassword());
+
+            AppDatabase database = AppDatabase.getInstance(context.getApplicationContext());
+            database.userRepository().save(user);
+
             DeliveryDateActivity.start(context);
-            ((Activity) context).finish();
+            //TODO - не работает
+            //((Activity) context).finish();
         }
     }
 }

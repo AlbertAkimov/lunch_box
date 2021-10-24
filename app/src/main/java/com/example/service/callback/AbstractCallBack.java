@@ -7,9 +7,6 @@ import com.example.model.AbstractModel;
 import java.util.List;
 
 import io.reactivex.functions.BiConsumer;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * @Authot: Albert Akimov

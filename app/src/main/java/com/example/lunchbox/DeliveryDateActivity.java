@@ -24,6 +24,7 @@ public class DeliveryDateActivity extends AppCompatActivity {
 
     public static void start(Context caller) {
         Intent intent = new Intent(caller, DeliveryDateActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         caller.startActivity(intent);
     }
 

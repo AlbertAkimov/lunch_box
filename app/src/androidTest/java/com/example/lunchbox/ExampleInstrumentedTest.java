@@ -9,6 +9,11 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
+import com.example.database.AppDatabase;
+import com.example.model.User;
+
+import java.util.List;
+
 /**
  * Instrumented test, which will execute on an Android device.
  *
@@ -20,6 +25,10 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+ /*       AppDatabase appDatabase = AppDatabase.getInstance(appContext);
+        List<User> users = appDatabase.userRepository().getAll();
+        for(User user: users)
+            appDatabase.userRepository().delete(user);*/
         assertEquals("com.example.lunchbox", appContext.getPackageName());
     }
 }

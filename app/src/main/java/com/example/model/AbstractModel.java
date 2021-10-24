@@ -1,5 +1,7 @@
 package com.example.model;
 
+import androidx.room.PrimaryKey;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,9 +15,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AbstractModel {
+public abstract class AbstractModel {
 
-    // TODO - rename to ID
-    private String externalKey;
+    @PrimaryKey(autoGenerate = false)
+    private Long id;
 
 }

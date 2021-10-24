@@ -14,6 +14,7 @@ import com.example.model.Product;
 import com.example.service.network.ProductNetworkService;
 
 import java.util.List;
+import java.util.Objects;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -28,8 +29,8 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ProductActivity extends AppCompatActivity {
 
-    private static String EXTRA_DELIVERY_DATE = "ProductActivity.EXTRA_DELIVERY_DATE";
-    private static String EXTRA_CATEGORY_MENU_ID = "ProductActivity.EXTRA_CATEGORY_MENU_ID";
+    private static final String EXTRA_DELIVERY_DATE = "ProductActivity.EXTRA_DELIVERY_DATE";
+    private static final String EXTRA_CATEGORY_MENU_ID = "ProductActivity.EXTRA_CATEGORY_MENU_ID";
 
     CompositeDisposable disposable = new CompositeDisposable();
     private ProductListAdapter adapter;
@@ -38,9 +39,6 @@ public class ProductActivity extends AppCompatActivity {
         Intent intent = new Intent(caller, ProductActivity.class);
         intent.putExtra(EXTRA_DELIVERY_DATE, date);
         intent.putExtra(EXTRA_CATEGORY_MENU_ID, id);
-
-        EXTRA_DELIVERY_DATE = date;
-        EXTRA_CATEGORY_MENU_ID = id;
 
         caller.startActivity(intent);
     }
@@ -56,19 +54,16 @@ public class ProductActivity extends AppCompatActivity {
 
         ProductNetworkService service = new ProductNetworkService(getApplicationContext());
         disposable.add(service.getService().getProductByCategoryMenuAndDeliveryDate(
-               EXTRA_DELIVERY_DATE,
-                EXTRA_CATEGORY_MENU_ID)
+               getIntent().getExtras().getString(EXTRA_DELIVERY_DATE),
+                getIntent().getExtras().getString(EXTRA_CATEGORY_MENU_ID))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BiConsumer<List<Product>, Throwable>() {
-                    @Override
-                    public void accept(List<Product> dates, Throwable throwable) throws Exception {
-                        if (throwable != null) {
-                            Toast.makeText(ProductActivity.this, "Data loading error", Toast.LENGTH_SHORT).show();
-                        } else {
-                            adapter = new ProductListAdapter(ProductActivity.this, R.layout.activity_product, dates, app.getBasketList());
-                            listView.setAdapter(adapter);
-                        }
+                .subscribe((dates, throwable) -> {
+                    if (throwable != null) {
+                        Toast.makeText(ProductActivity.this, "Data loading error", Toast.LENGTH_SHORT).show();
+                    } else {
+                        adapter = new ProductListAdapter(ProductActivity.this, R.layout.activity_product, dates, app.getBasketList());
+                        listView.setAdapter(adapter);
                     }
                 }));
     }
