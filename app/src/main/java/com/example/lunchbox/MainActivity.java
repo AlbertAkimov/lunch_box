@@ -12,7 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.model.User;
 import com.example.service.manager.AuthenticationDataLoadManager;
 import com.example.service.network.UserNetworkService;
+import com.example.util.SHAUtil;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import io.reactivex.Single;
@@ -47,11 +49,12 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
 
         Button login = findViewById(R.id.login);
+
         login.setOnClickListener(view -> {
 
             //TODO - Возможно нужно вынести слой сервиса в менеджер загрузки данных.
-            Single<List<User>> single = service.
-                    getService().login(username.getText().toString(), password.getText().toString());
+            Single<List<User>> single = null;
+            single = service.getService().login(username.getText().toString(), SHAUtil.hashPassword(password.getText().toString()));
 
             AuthenticationDataLoadManager dataLoadManager = new AuthenticationDataLoadManager(view.getContext(), disposable);
             dataLoadManager.execute(single);

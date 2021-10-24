@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.model.User;
 import com.example.service.manager.RecoveryPasswordDataLoadManager;
 import com.example.service.network.UserNetworkService;
+import com.example.util.SHAUtil;
 
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class RecoveryPasswordActivity extends AppCompatActivity {
             UserNetworkService service = new UserNetworkService(getApplicationContext());
 
             Single<List<User>> single = service.
-                    getService().changePasswordByRecoveryCode(password.getText().toString(), recoveryCode.getText().toString());
+                    getService().changePasswordByRecoveryCode(SHAUtil.hashPassword(password.getText().toString()), recoveryCode.getText().toString());
 
             RecoveryPasswordDataLoadManager loadManager = new RecoveryPasswordDataLoadManager(view.getContext(), disposable);
             loadManager.execute(single);
