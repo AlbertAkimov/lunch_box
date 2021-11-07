@@ -36,6 +36,11 @@ public class CategoryMenuAdapter extends RecyclerView.Adapter<ViewHolderCategory
         notifyDataSetChanged();
     }
 
+    public void updateData(CategoryMenu data) {
+        categoryMenu.set(categoryMenu.indexOf(data), data);
+        notifyItemChanged(categoryMenu.indexOf(data));
+    }
+
     @NonNull
     @Override
     public ViewHolderCategoryMenu onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {

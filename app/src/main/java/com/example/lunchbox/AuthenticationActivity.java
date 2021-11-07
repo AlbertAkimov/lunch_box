@@ -21,8 +21,5 @@ public class AuthenticationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_authentication);
 
         App app = (App) getApplication();
-
-
-
     }
 }

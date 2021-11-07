@@ -3,10 +3,11 @@ package com.example.lunchbox;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,10 +18,15 @@ import com.example.service.network.CategoryMenuNetworkService;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.BiConsumer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -34,7 +40,7 @@ public class CategoryMenuActivity extends AppCompatActivity {
     public static String EXTRA_DELIVERY_DATE = "CategoryMenuActivity.EXTRA_DELIVERY_DATE";
 
     CompositeDisposable disposable = new CompositeDisposable();
-    private CategoryMenuAdapter adapter;
+    private final CategoryMenuAdapter adapter = new CategoryMenuAdapter();
 
     public static void start(Context caller, String date) {
         Intent intent = new Intent(caller, CategoryMenuActivity.class);
@@ -51,8 +57,38 @@ public class CategoryMenuActivity extends AppCompatActivity {
         RecyclerView listView = (RecyclerView) findViewById(R.id.list);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         listView.setLayoutManager(layoutManager);
-        adapter = new CategoryMenuAdapter();
         listView.setAdapter(adapter);
+
+        CategoryMenuNetworkService service = new CategoryMenuNetworkService(getApplicationContext());
+
+        getCategoryMenu()
+                .subscribeOn(Schedulers.io())
+                .flatMap(new Function<CategoryMenu, ObservableSource<CategoryMenu>>() {
+            @Override
+            public ObservableSource<CategoryMenu> apply(@NonNull CategoryMenu categoryMenu) throws Exception {
+                return getImageCategoryMenu(categoryMenu);
+            }
+        }).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<CategoryMenu>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+                disposable.add(d);
+            }
+
+            @Override
+            public void onNext(@NonNull CategoryMenu categoryMenu) {
+                adapter.updateData(categoryMenu);
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                Log.e("1",e.getMessage());
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
 
         Button cart = findViewById(R.id.footer_card);
         cart.setOnClickListener(new View.OnClickListener() {
@@ -62,24 +98,40 @@ public class CategoryMenuActivity extends AppCompatActivity {
             }
         });
 
-
-        CategoryMenuNetworkService service = new CategoryMenuNetworkService(getApplicationContext());
-        disposable.add(service.getService().getCategoryMenuByDeliveryDate(
-                Objects.requireNonNull(getIntent().getExtras()).getString(EXTRA_DELIVERY_DATE))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((dates, throwable) -> {
-                    if (throwable != null) {
-                        Toast.makeText(CategoryMenuActivity.this, "Data loading error", Toast.LENGTH_SHORT).show();
-                    } else {
-                        adapter.setDates(dates);
-                    }
-                }));
     }
 
     @Override
     protected void onDestroy() {
         disposable.dispose();
         super.onDestroy();
+    }
+
+    private Observable<CategoryMenu> getCategoryMenu() {
+        CategoryMenuNetworkService service = new CategoryMenuNetworkService(getApplicationContext());
+        return service.getService()
+                .getDataByDeliveryDate(Objects.requireNonNull(getIntent().getExtras()).getString(EXTRA_DELIVERY_DATE))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .flatMap((Function<List<CategoryMenu>, ObservableSource<CategoryMenu>>) categoryMenus -> {
+                    adapter.setDates(categoryMenus);
+                    return Observable.fromIterable(categoryMenus).subscribeOn(Schedulers.io());
+                });
+    }
+
+    private Observable<CategoryMenu> getImageCategoryMenu(final CategoryMenu menu) {
+        CategoryMenuNetworkService service = new CategoryMenuNetworkService(getApplicationContext());
+        return service.getService()
+                .getImageCategoryMenuById(menu.getId())
+                .map(categoryMenu -> {
+
+                    int delay = ((new Random()).nextInt(5) + 1) * 1000;
+
+                    Thread.sleep(delay);
+
+                    menu.setCategoryMenuImage(categoryMenu.getCategoryMenuImage());
+
+                    return menu;
+                })
+                .subscribeOn(Schedulers.io());
     }
 }

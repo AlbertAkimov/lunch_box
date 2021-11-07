@@ -4,6 +4,7 @@ import com.example.model.CategoryMenu;
 
 import java.util.List;
 
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -17,5 +18,8 @@ import retrofit2.http.Path;
 public interface CategoryMenuService {
 
     @GET("category_menu/{deliveryDate}")
-    Single<List<CategoryMenu>> getCategoryMenuByDeliveryDate(@Path("deliveryDate") String date);
+    Observable<List<CategoryMenu>> getDataByDeliveryDate(@Path("deliveryDate") String date);
+
+    @GET("category_menu_image/{id}")
+    Observable<CategoryMenu> getImageCategoryMenuById(@Path("id") Long id);
 }

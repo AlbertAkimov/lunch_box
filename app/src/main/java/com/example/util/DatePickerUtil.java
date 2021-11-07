@@ -14,7 +14,7 @@ public class DatePickerUtil {
         String mount    = String.valueOf(i1);
         String day      = String.valueOf(i2);
 
-        if(i1 + 1 < 10)
+        if(i1 + 1 <= 10)
             mount = "0" + (i1 + 1);
 
         if(i2 < 10)

@@ -15,10 +15,12 @@ import retrofit2.http.Path;
  */
 public interface ProductService {
 
-    @GET("product")
-    Single<List<Product>> getAll();
-
     @GET("getProductsByCategoryMenuAndDeliveryDate/{deliveryDate}/{categoryMenuId}")
     Single<List<Product>> getProductByCategoryMenuAndDeliveryDate(
             @Path("deliveryDate") String date, @Path("categoryMenuId") String categoryMenuId);
+
+    @GET("getImageProductByCategoryMenuAndDeliveryDate/{deliveryDate}/{categoryMenuId}")
+    Single<List<Product>> getImageProductByCategoryMenuAndDeliveryDate(
+            @Path("deliveryDate") String date, @Path("categoryMenuId") String categoryMenuId
+    );
 }
