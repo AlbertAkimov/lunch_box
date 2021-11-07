@@ -59,8 +59,6 @@ public class CategoryMenuActivity extends AppCompatActivity {
         listView.setLayoutManager(layoutManager);
         listView.setAdapter(adapter);
 
-        CategoryMenuNetworkService service = new CategoryMenuNetworkService(getApplicationContext());
-
         getCategoryMenu()
                 .subscribeOn(Schedulers.io())
                 .flatMap(new Function<CategoryMenu, ObservableSource<CategoryMenu>>() {
@@ -91,12 +89,7 @@ public class CategoryMenuActivity extends AppCompatActivity {
         });
 
         Button cart = findViewById(R.id.footer_card);
-        cart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CartActivity.start(view.getContext());
-            }
-        });
+        cart.setOnClickListener(view -> CartActivity.start(view.getContext()));
 
     }
 
