@@ -26,12 +26,12 @@ public abstract class DataLoadManager<T extends AbstractModel> {
 
     protected Context context;
     protected CompositeDisposable disposable;
-    protected AbstractCallBack<T> abstractCallBack;
+    protected AbstractCallBack<T> callBack;
 
     public DataLoadManager(Context context, CompositeDisposable disposable, AbstractCallBack<T> abstractCallBack) {
         this.context    = context;
         this.disposable = disposable;
-        this.abstractCallBack = abstractCallBack;
+        this.callBack = abstractCallBack;
     }
 
     public void execute(Single<List<T>> single) {
@@ -39,6 +39,6 @@ public abstract class DataLoadManager<T extends AbstractModel> {
         disposable.add(single
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(abstractCallBack));
+                .subscribe(callBack));
     }
 }
