@@ -5,7 +5,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Update;
 
-import com.example.model.AbstractModel;
+import com.example.domain.model.AbstractModel;
 
 /**
  * @Authot: Albert Akimov
@@ -14,7 +14,7 @@ import com.example.model.AbstractModel;
  */
 
 @Dao
-public interface CRUDRepository<E extends AbstractModel> {
+public interface BaseRepository<E extends AbstractModel> {
 
     @Insert
     void save(E entity);

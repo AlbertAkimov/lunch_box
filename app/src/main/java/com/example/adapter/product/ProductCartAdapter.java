@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 
 import com.example.lunchbox.CartActivity;
 import com.example.lunchbox.R;
-import com.example.model.ProductCart;
+import com.example.domain.model.ProductCart;
 import com.example.util.ImageUtil;
 import com.example.view.product.ProductCartView;
 

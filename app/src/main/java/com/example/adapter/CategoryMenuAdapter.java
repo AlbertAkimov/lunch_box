@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lunchbox.R;
-import com.example.model.CategoryMenu;
+import com.example.domain.model.CategoryMenu;
 import com.example.view.ViewHolderCategoryMenu;
 
 import java.util.ArrayList;

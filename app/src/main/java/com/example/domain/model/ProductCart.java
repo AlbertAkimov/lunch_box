@@ -1,6 +1,4 @@
-package com.example.model;
-
-import androidx.room.PrimaryKey;
+package com.example.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,16 +6,16 @@ import lombok.NoArgsConstructor;
 
 /**
  * @Authot: Albert Akimov
- * @Date: 04.09.2021
+ * @Date: 12.09.2021
  * @Description:
  */
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class AbstractModel {
+public class ProductCart {
 
-    @PrimaryKey(autoGenerate = false)
-    private Long id;
+    private Product product;
+    private Long number;
 
 }

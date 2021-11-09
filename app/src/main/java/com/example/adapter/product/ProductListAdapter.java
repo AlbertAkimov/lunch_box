@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.lunchbox.R;
-import com.example.model.Product;
-import com.example.model.ProductCart;
+import com.example.domain.model.Product;
+import com.example.domain.model.ProductCart;
 import com.example.util.ImageUtil;
 import com.example.view.product.ProductView;
 

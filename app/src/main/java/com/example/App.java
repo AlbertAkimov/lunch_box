@@ -2,7 +2,7 @@ package com.example;
 
 import android.app.Application;
 
-import com.example.model.ProductCart;
+import com.example.domain.model.ProductCart;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;

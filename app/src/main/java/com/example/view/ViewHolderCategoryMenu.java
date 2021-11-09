@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lunchbox.ProductActivity;
 import com.example.lunchbox.R;
-import com.example.model.CategoryMenu;
+import com.example.domain.model.CategoryMenu;
 import com.example.util.ImageUtil;
 import com.example.view.product.CategoryMenuView;
 

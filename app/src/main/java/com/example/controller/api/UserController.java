@@ -1,6 +1,6 @@
-package com.example.service.api;
+package com.example.controller.api;
 
-import com.example.model.User;
+import com.example.domain.model.User;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import retrofit2.http.Path;
  */
 
 
-public interface UserService  {
+public interface UserController {
 
     @GET("login/{username}/{password}")
     Single<List<User>> login(@Path("username") String username, @Path("password") String password);

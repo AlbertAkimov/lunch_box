@@ -10,15 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.App;
 import com.example.adapter.product.ProductListAdapter;
-import com.example.model.Product;
-import com.example.service.network.ProductNetworkService;
-
-import java.util.List;
-import java.util.Objects;
+import com.example.service.ProductService;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.BiConsumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -52,8 +47,8 @@ public class ProductActivity extends AppCompatActivity {
 
         App app = (App) getApplication();
 
-        ProductNetworkService service = new ProductNetworkService(getApplicationContext());
-        disposable.add(service.getService().getProductByCategoryMenuAndDeliveryDate(
+        ProductService service = new ProductService(getApplicationContext());
+        disposable.add(service.getController().getProductByCategoryMenuAndDeliveryDate(
                getIntent().getExtras().getString(EXTRA_DELIVERY_DATE),
                 getIntent().getExtras().getString(EXTRA_CATEGORY_MENU_ID))
                 .subscribeOn(Schedulers.io())

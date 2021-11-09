@@ -1,11 +1,10 @@
-package com.example.service.api;
+package com.example.controller.api;
 
-import com.example.model.CategoryMenu;
+import com.example.domain.model.CategoryMenu;
 
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
@@ -15,7 +14,7 @@ import retrofit2.http.Path;
  * @Description:
  */
 
-public interface CategoryMenuService {
+public interface CategoryController {
 
     @GET("category_menu/{deliveryDate}")
     Observable<List<CategoryMenu>> getDataByDeliveryDate(@Path("deliveryDate") String date);

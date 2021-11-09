@@ -6,7 +6,9 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.model.User;
+import com.example.domain.model.AbstractModel;
+import com.example.domain.model.User;
+import com.example.repository.BaseRepository;
 import com.example.repository.UserRepository;
 
 /**
@@ -29,5 +31,14 @@ public abstract class AppDatabase extends RoomDatabase {
                     .allowMainThreadQueries().fallbackToDestructiveMigration().build();
 
         return INSTANCE;
+    }
+
+    @SuppressWarnings("all")
+    public <T> T getRepository(Class<?> aClass) {
+
+        if (aClass.getClass().isInstance(UserRepository.class))
+            return (T) userRepository();
+        else
+            return null;
     }
 }

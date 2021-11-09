@@ -4,11 +4,9 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.example.lunchbox.MainActivity;
-import com.example.model.User;
+import com.example.domain.model.User;
 
 import java.util.List;
-
-import retrofit2.HttpException;
 
 /**
  * @Authot: Albert Akimov

@@ -1,4 +1,4 @@
-package com.example.service.network;
+package com.example.service;
 
 import android.content.Context;
 
@@ -8,9 +8,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import okhttp3.Authenticator;
 import okhttp3.Credentials;
@@ -29,30 +26,38 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @Description:
  */
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public abstract class AbstractNetworkService {
+public class WebServiceHelper {
 
-    protected Retrofit retrofit;
-    protected Context context;
-    protected String host;
-    protected String baseUrl;
-    protected String username;
-    protected String password;
+    private final Retrofit retrofit;
+    private final String host;
+    private final String baseUrl;
+    private final String username;
+    private final String password;
+
+    private static WebServiceHelper instance;
 
     @SneakyThrows
-    public AbstractNetworkService(Context context) {
-        this.context = context;
-        host = PropertiesUtil.getProperty("network.host", context);
-        baseUrl = PropertiesUtil.getProperty("network.baseUrl", context);
+    public WebServiceHelper(Context context) {
+        host     = PropertiesUtil.getProperty("network.host", context);
+        baseUrl  = PropertiesUtil.getProperty("network.baseUrl", context);
         username = PropertiesUtil.getProperty("network.auth.username", context);
         password = PropertiesUtil.getProperty("network.auth.password", context);
         retrofit = createRetrofit();
     }
 
+    public static WebServiceHelper getInstance(Context context) {
+        //if(instance == null)
+            instance = new WebServiceHelper(context);
+        return instance;
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T create(Class<?> clazz) {
+       return (T) retrofit.create(clazz);
+    }
+
     @SneakyThrows
-    protected Retrofit createRetrofit() {
+    private Retrofit createRetrofit() {
         return new Retrofit.Builder()
                 .baseUrl(host + baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -61,7 +66,7 @@ public abstract class AbstractNetworkService {
                 .build();
     }
 
-    protected OkHttpClient createOkHttpClient() {
+    private OkHttpClient createOkHttpClient() {
 
         final OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
                 .authenticator(getBasicAuth(username, password));
@@ -73,7 +78,7 @@ public abstract class AbstractNetworkService {
         return httpClient.build();
     }
 
-    protected Authenticator getBasicAuth(final String username, final String password) {
+    private Authenticator getBasicAuth(final String username, final String password) {
         return new Authenticator() {
             private int mCounter = 0;
 

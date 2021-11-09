@@ -1,6 +1,6 @@
-package com.example.service.api;
+package com.example.controller.api;
 
-import com.example.model.Product;
+import com.example.domain.model.Product;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import retrofit2.http.Path;
  * @Date: 11.09.2021
  * @Description:
  */
-public interface ProductService {
+public interface ProductController {
 
     @GET("getProductsByCategoryMenuAndDeliveryDate/{deliveryDate}/{categoryMenuId}")
     Single<List<Product>> getProductByCategoryMenuAndDeliveryDate(

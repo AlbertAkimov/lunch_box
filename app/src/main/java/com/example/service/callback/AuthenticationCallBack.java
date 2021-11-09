@@ -1,18 +1,13 @@
 package com.example.service.callback;
 
-import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
 import com.example.database.AppDatabase;
 import com.example.lunchbox.DeliveryDateActivity;
-import com.example.lunchbox.MainActivity;
-import com.example.model.User;
-import com.example.util.SHAUtil;
+import com.example.domain.model.User;
 
 import java.util.List;
-
-import retrofit2.HttpException;
 
 /**
  * @Authot: Albert Akimov

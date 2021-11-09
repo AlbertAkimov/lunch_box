@@ -2,7 +2,7 @@ package com.example.service.manager;
 
 import android.content.Context;
 
-import com.example.model.AbstractModel;
+import com.example.domain.model.AbstractModel;
 import com.example.service.callback.AbstractCallBack;
 
 import java.util.List;

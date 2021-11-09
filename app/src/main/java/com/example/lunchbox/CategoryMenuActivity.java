@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
@@ -13,8 +12,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.adapter.CategoryMenuAdapter;
-import com.example.model.CategoryMenu;
-import com.example.service.network.CategoryMenuNetworkService;
+import com.example.domain.model.CategoryMenu;
+import com.example.service.CategoryService;
 
 import java.util.List;
 import java.util.Objects;
@@ -100,8 +99,8 @@ public class CategoryMenuActivity extends AppCompatActivity {
     }
 
     private Observable<CategoryMenu> getCategoryMenu() {
-        CategoryMenuNetworkService service = new CategoryMenuNetworkService(getApplicationContext());
-        return service.getService()
+        CategoryService service = new CategoryService(getApplicationContext());
+        return service.getController()
                 .getDataByDeliveryDate(Objects.requireNonNull(getIntent().getExtras()).getString(EXTRA_DELIVERY_DATE))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -112,8 +111,8 @@ public class CategoryMenuActivity extends AppCompatActivity {
     }
 
     private Observable<CategoryMenu> getImageCategoryMenu(final CategoryMenu menu) {
-        CategoryMenuNetworkService service = new CategoryMenuNetworkService(getApplicationContext());
-        return service.getService()
+        CategoryService service = new CategoryService(getApplicationContext());
+        return service.getController()
                 .getImageCategoryMenuById(menu.getId())
                 .map(categoryMenu -> {
 

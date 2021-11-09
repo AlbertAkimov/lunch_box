@@ -3,16 +3,15 @@ package com.example.lunchbox;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.model.User;
+import com.example.domain.model.User;
 import com.example.service.manager.RecoveryPasswordDataLoadManager;
-import com.example.service.network.UserNetworkService;
+import com.example.service.UserService;
 import com.example.util.SHAUtil;
 
 import java.util.List;
@@ -51,10 +50,10 @@ public class RecoveryPasswordActivity extends AppCompatActivity {
         Button send = findViewById(R.id.change_password);
         send.setOnClickListener(view -> {
 
-            UserNetworkService service = new UserNetworkService(getApplicationContext());
+            UserService service = new UserService(getApplicationContext());
 
             Single<List<User>> single = service.
-                    getService().changePasswordByRecoveryCode(SHAUtil.hashPassword(password.getText().toString()), recoveryCode.getText().toString());
+                    getController().changePasswordByRecoveryCode(SHAUtil.hashPassword(password.getText().toString()), recoveryCode.getText().toString());
 
             RecoveryPasswordDataLoadManager loadManager = new RecoveryPasswordDataLoadManager(view.getContext(), disposable);
             loadManager.execute(single);

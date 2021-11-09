@@ -2,7 +2,7 @@ package com.example.service.callback;
 
 import android.content.Context;
 
-import com.example.model.AbstractModel;
+import com.example.domain.model.AbstractModel;
 
 import java.util.List;
 

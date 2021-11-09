@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.App;
 import com.example.adapter.product.ProductCartAdapter;
-import com.example.model.ProductCart;
+import com.example.domain.model.ProductCart;
 
 /**
  * @Authot: Albert Akimov

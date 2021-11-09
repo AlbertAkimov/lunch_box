@@ -2,8 +2,7 @@ package com.example.service.manager;
 
 import android.content.Context;
 
-import com.example.model.User;
-import com.example.service.callback.AbstractCallBack;
+import com.example.domain.model.User;
 import com.example.service.callback.RecoveryPasswordCallBack;
 
 import io.reactivex.disposables.CompositeDisposable;

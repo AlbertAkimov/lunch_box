@@ -9,11 +9,6 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
-import com.example.database.AppDatabase;
-import com.example.model.User;
-
-import java.util.List;
-
 /**
  * Instrumented test, which will execute on an Android device.
  *

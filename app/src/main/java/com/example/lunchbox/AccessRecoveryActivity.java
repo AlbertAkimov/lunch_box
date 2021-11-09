@@ -3,15 +3,14 @@ package com.example.lunchbox;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.model.User;
+import com.example.domain.model.User;
 import com.example.service.manager.AccessRecoveryDataLoadManager;
-import com.example.service.network.UserNetworkService;
+import com.example.service.UserService;
 
 import java.util.List;
 
@@ -44,8 +43,8 @@ public class AccessRecoveryActivity extends AppCompatActivity {
         Button restore = findViewById(R.id.send_email);
         restore.setOnClickListener(view -> {
 
-            UserNetworkService service = new UserNetworkService(getApplicationContext());
-            Single<List<User>> single = service.getService().restorePasswordByEmail(email.getText().toString());
+            UserService service = new UserService(getApplicationContext());
+            Single<List<User>> single = service.getController().restorePasswordByEmail(email.getText().toString());
 
             AccessRecoveryDataLoadManager dataLoadManager = new AccessRecoveryDataLoadManager(view.getContext(), disposable);
             dataLoadManager.execute(single);

@@ -3,22 +3,14 @@ package com.example.lunchbox;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.database.AppDatabase;
-import com.example.model.User;
-import com.example.service.manager.AuthenticationDataLoadManager;
-import com.example.service.network.UserNetworkService;
+import com.example.service.UserService;
 import com.example.util.SHAUtil;
 
-import java.security.NoSuchAlgorithmException;
-import java.util.List;
-
-import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 
 /**
@@ -46,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
 
-        UserNetworkService service = new UserNetworkService(getApplicationContext());
+        UserService service = new UserService(getApplicationContext());
         service.autoLogin(disposable, username);
 
         Button login = findViewById(R.id.login);

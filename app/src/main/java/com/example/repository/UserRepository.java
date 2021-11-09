@@ -3,7 +3,7 @@ package com.example.repository;
 import androidx.room.Dao;
 import androidx.room.Query;
 
-import com.example.model.User;
+import com.example.domain.model.User;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 @Dao
-public interface UserRepository extends CRUDRepository<User> {
+public interface UserRepository extends BaseRepository<User> {
 
     @Query("SELECT * FROM user")
     List<User> getAll();

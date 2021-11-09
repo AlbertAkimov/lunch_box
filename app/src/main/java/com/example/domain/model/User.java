@@ -1,7 +1,6 @@
-package com.example.model;
+package com.example.domain.model;
 
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
