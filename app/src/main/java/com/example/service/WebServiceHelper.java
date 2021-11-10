@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
+import lombok.Data;
 import lombok.SneakyThrows;
 import okhttp3.Authenticator;
 import okhttp3.Credentials;
@@ -26,13 +27,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @Description:
  */
 
+@Data
 public class WebServiceHelper {
 
-    private final Retrofit retrofit;
-    private final String host;
-    private final String baseUrl;
-    private final String username;
-    private final String password;
+    private Retrofit retrofit;
+    private String host;
+    private String baseUrl;
+    private String username;
+    private String password;
 
     private static WebServiceHelper instance;
 
@@ -42,18 +44,18 @@ public class WebServiceHelper {
         baseUrl  = PropertiesUtil.getProperty("network.baseUrl", context);
         username = PropertiesUtil.getProperty("network.auth.username", context);
         password = PropertiesUtil.getProperty("network.auth.password", context);
-        retrofit = createRetrofit();
     }
 
     public static WebServiceHelper getInstance(Context context) {
-        //if(instance == null)
+        if(instance == null)
             instance = new WebServiceHelper(context);
         return instance;
     }
 
     @SuppressWarnings("unchecked")
     public <T> T create(Class<?> clazz) {
-       return (T) retrofit.create(clazz);
+        retrofit = createRetrofit();
+        return (T) retrofit.create(clazz);
     }
 
     @SneakyThrows
