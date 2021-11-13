@@ -9,14 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.lunchbox.domain.model.User;
-import com.lunchbox.service.manager.RecoveryPasswordDataLoadManager;
 import com.lunchbox.service.UserService;
 import com.lunchbox.util.SHAUtil;
 
-import java.util.List;
-
-import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 
 /**
@@ -35,6 +30,7 @@ public class RecoveryPasswordActivity extends AppCompatActivity {
 
     public static void start(Context caller)  {
         Intent intent = new Intent(caller, RecoveryPasswordActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         caller.startActivity(intent);
     }
 
@@ -51,12 +47,11 @@ public class RecoveryPasswordActivity extends AppCompatActivity {
         send.setOnClickListener(view -> {
 
             UserService service = new UserService(getApplicationContext());
+            service.changePasswordByRecoveryCode(
+                    SHAUtil.hashPassword(password.getText().toString()),
+                    recoveryCode.getText().toString(),
+                    disposable);
 
-            Single<List<User>> single = service.
-                    getController().changePasswordByRecoveryCode(SHAUtil.hashPassword(password.getText().toString()), recoveryCode.getText().toString());
-
-            RecoveryPasswordDataLoadManager loadManager = new RecoveryPasswordDataLoadManager(view.getContext(), disposable);
-            loadManager.execute(single);
         });
     }
 

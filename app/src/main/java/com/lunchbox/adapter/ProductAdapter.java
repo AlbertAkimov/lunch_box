@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lunchbox.activity.R;
 import com.lunchbox.domain.model.Product;
-import com.lunchbox.view.ViewHolderProduct;
+import com.lunchbox.view.holder.ViewHolderProduct;
 
 import java.util.ArrayList;
 import java.util.List;

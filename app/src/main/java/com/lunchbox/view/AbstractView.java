@@ -1,4 +1,4 @@
-package com.lunchbox.view.product;
+package com.lunchbox.view;
 
 import android.widget.TextView;
 

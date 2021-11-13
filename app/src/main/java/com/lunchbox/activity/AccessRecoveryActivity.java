@@ -8,13 +8,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.lunchbox.domain.model.User;
-import com.lunchbox.service.manager.AccessRecoveryDataLoadManager;
 import com.lunchbox.service.UserService;
 
-import java.util.List;
-
-import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 
 /**
@@ -44,12 +39,9 @@ public class AccessRecoveryActivity extends AppCompatActivity {
         restore.setOnClickListener(view -> {
 
             UserService service = new UserService(getApplicationContext());
-            Single<List<User>> single = service.getController().restorePasswordByEmail(email.getText().toString());
+            service.restorePasswordByEmail(email.getText().toString(), disposable);
 
-            AccessRecoveryDataLoadManager dataLoadManager = new AccessRecoveryDataLoadManager(view.getContext(), disposable);
-            dataLoadManager.execute(single);
         });
-
     }
 
     @Override

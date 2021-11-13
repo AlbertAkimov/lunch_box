@@ -1,4 +1,4 @@
-package com.lunchbox.view.product;
+package com.lunchbox.view;
 
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,17 +9,15 @@ import lombok.NoArgsConstructor;
 
 /**
  * @Authot: Albert Akimov
- * @Date: 12.09.2021
+ * @Date: 14.09.2021
  * @Description:
  */
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductView extends AbstractView {
+public class CategoryMenuView extends AbstractView {
 
-    TextView productName;
-    TextView productDescription;
-    TextView productPrice;
-    ImageView productImage;
+    TextView name;
+    ImageView image;
 }

@@ -1,4 +1,4 @@
-package com.lunchbox.view;
+package com.lunchbox.view.holder;
 
 import android.view.View;
 
@@ -9,7 +9,7 @@ import com.lunchbox.activity.ProductActivity;
 import com.lunchbox.activity.R;
 import com.lunchbox.domain.model.CategoryMenu;
 import com.lunchbox.util.ImageUtil;
-import com.lunchbox.view.product.CategoryMenuView;
+import com.lunchbox.view.CategoryMenuView;
 
 /**
  * @Authot: Albert Akimov

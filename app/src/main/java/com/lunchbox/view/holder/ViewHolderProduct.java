@@ -1,4 +1,4 @@
-package com.lunchbox.view;
+package com.lunchbox.view.holder;
 
 import android.view.View;
 
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.lunchbox.domain.model.Product;
 import com.lunchbox.activity.R;
 import com.lunchbox.util.ImageUtil;
-import com.lunchbox.view.product.ProductView;
+import com.lunchbox.view.ProductView;
 
 /**
  * @Authot: Albert Akimov

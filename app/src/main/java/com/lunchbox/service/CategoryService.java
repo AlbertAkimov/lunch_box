@@ -27,13 +27,13 @@ import io.reactivex.schedulers.Schedulers;
  * @Description:
  */
 
-public class CategoryService extends BaseService<CategoryController, Object> {
+public class CategoryService extends BaseService<CategoryController, Object, CategoryMenu> {
 
     public CategoryService(Context context) {
         super(context, CategoryController.class, Object.class);
     }
 
-    public void execute(CategoryMenuAdapter adapter, CompositeDisposable disposable, String date) {
+    public void getListCategoryAndImageOfCategory(CategoryMenuAdapter adapter, CompositeDisposable disposable, String date) {
 
         getCategoryMenu(adapter, date)
                 .subscribeOn(Schedulers.io())
@@ -84,11 +84,16 @@ public class CategoryService extends BaseService<CategoryController, Object> {
         return controller
                 .getImageCategoryMenuById(menu.getId())
                 .map(categoryMenu -> {
-                    int delay = ((new Random()).nextInt(5) + 1) * 1000;
-                    Thread.sleep(delay);
+/*                    int delay = ((new Random()).nextInt(5) + 1) * 1000;
+                    Thread.sleep(delay);*/
                     menu.setCategoryMenuImage(categoryMenu.getCategoryMenuImage());
                     return menu;
                 })
                 .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public void accept(List<CategoryMenu> categoryMenus, Throwable throwable) throws Exception {
+
     }
 }

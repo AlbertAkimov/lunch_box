@@ -35,13 +35,7 @@ public class DeliveryDateActivity extends AppCompatActivity {
 
         DatePicker datePicker = findViewById(R.id.deliveryDate);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            datePicker.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
-                @Override
-                public void onDateChanged(DatePicker datePicker, int i, int i1, int i2) {
-
-                    deliveryDate = DatePickerUtil.buildDateString(i, i1, i2);
-                }
-            });
+            datePicker.setOnDateChangedListener((datePicker1, i, i1, i2) -> deliveryDate = DatePickerUtil.buildDateString(i, i1, i2));
         }
 
         Button productCart = findViewById(R.id.makeAnOrder);

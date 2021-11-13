@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.lunchbox.App;
 import com.lunchbox.adapter.ProductAdapter;
 import com.lunchbox.service.ProductService;
 
@@ -48,7 +47,7 @@ public class ProductActivity extends AppCompatActivity {
         listView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         ProductService service = new ProductService(getApplicationContext());
-        service.execute(
+        service.getListProductsAndImageOfProducts(
                 adapter,
                 disposable,
                 Objects.requireNonNull(getIntent().getExtras()).getString(EXTRA_DELIVERY_DATE),

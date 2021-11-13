@@ -28,13 +28,13 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 
-public class ProductService extends BaseService<ProductController, Object> {
+public class ProductService extends BaseService<ProductController, Object, Product> {
 
     public ProductService(Context context) {
         super(context, ProductController.class, Object.class);
     }
 
-    public void execute(ProductAdapter adapter, CompositeDisposable disposable, String date, String categoryId) {
+    public void getListProductsAndImageOfProducts(ProductAdapter adapter, CompositeDisposable disposable, String date, String categoryId) {
 
         getProduct(adapter, date, categoryId)
                 .subscribeOn(Schedulers.io())
@@ -85,11 +85,16 @@ public class ProductService extends BaseService<ProductController, Object> {
         return controller
                 .getImageProductById(product.getId())
                 .map(products -> {
-                    int delay = ((new Random()).nextInt(5) + 1) * 1000;
-                    Thread.sleep(delay);
+/*                    int delay = ((new Random()).nextInt(5) + 1) * 1000;
+                    Thread.sleep(delay);*/
                     product.setProductImage(products.getProductImage());
                     return product;
                 })
                 .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public void accept(List<Product> products, Throwable throwable) throws Exception {
+
     }
 }

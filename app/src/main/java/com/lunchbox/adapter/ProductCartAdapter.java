@@ -15,7 +15,7 @@ import com.lunchbox.activity.CartActivity;
 import com.lunchbox.activity.R;
 import com.lunchbox.domain.model.ProductCart;
 import com.lunchbox.util.ImageUtil;
-import com.lunchbox.view.product.ProductCartView;
+import com.lunchbox.view.ProductCartView;
 
 import java.util.List;
 import java.util.Objects;
