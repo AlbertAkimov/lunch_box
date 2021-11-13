@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.lunchbox">
+    package="com.lunchbox.activity">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -15,37 +15,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LunchBox"
         android:usesCleartextTraffic="true"
-        android:name="com.example.App">
+        android:name="com.lunchbox.App">
 
         <activity
-            android:name=".ProductActivity"
+            android:name="com.lunchbox.activity.ProductActivity"
             android:exported="true" />
 
         <activity
-            android:name=".CategoryMenuActivity"
+            android:name="com.lunchbox.activity.CategoryMenuActivity"
             android:exported="true" />
 
         <activity
-            android:name=".CartActivity"
+            android:name="com.lunchbox.activity.CartActivity"
             android:exported="true" />
 
         <activity
-            android:name=".AuthenticationActivity"
+            android:name="com.lunchbox.activity.AuthenticationActivity"
             android:exported="true" />
         <activity
-            android:name=".DeliveryDateActivity"
-            android:exported="true" />
-
-        <activity
-            android:name=".AccessRecoveryActivity"
+            android:name="com.lunchbox.activity.DeliveryDateActivity"
             android:exported="true" />
 
         <activity
-            android:name=".RecoveryPasswordActivity"
+            android:name="com.lunchbox.activity.AccessRecoveryActivity"
+            android:exported="true" />
+
+        <activity
+            android:name="com.lunchbox.activity.RecoveryPasswordActivity"
             android:exported="true" />
 
 
-        <activity android:name=".MainActivity">
+        <activity android:name="com.lunchbox.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
