@@ -1,30 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content_container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_margin="8dp"
     android:background="#FFFFFF"
     app:cardCornerRadius="8dp"
     tools:context=".ProductActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="715dp"
-        android:background="#FFFFFF"
-        android:orientation="vertical">
-
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listViewProduct"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listView" />
-
-    </LinearLayout>
-
-<!--    <include layout="@layout/main_menu" />-->
-
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        android:visibility="visible"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:ignore="RtlSymmetry" />
 
 </androidx.cardview.widget.CardView>

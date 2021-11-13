@@ -83,7 +83,7 @@ public class ProductService extends BaseService<ProductController, Object> {
     private Observable<Product> getImageProduct(final Product product) {
 
         return controller
-                .getImageProductByCategoryMenuAndDeliveryDate(product.getId())
+                .getImageProductById(product.getId())
                 .map(products -> {
                     int delay = ((new Random()).nextInt(5) + 1) * 1000;
                     Thread.sleep(delay);

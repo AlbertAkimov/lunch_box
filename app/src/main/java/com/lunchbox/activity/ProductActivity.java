@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lunchbox.App;
@@ -42,10 +43,9 @@ public class ProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list_view);
 
-        RecyclerView listView = (RecyclerView) findViewById(R.id.list);
+        RecyclerView listView = findViewById(R.id.listViewProduct);
         listView.setAdapter(adapter);
-
-        App app = (App) getApplication();
+        listView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         ProductService service = new ProductService(getApplicationContext());
         service.execute(

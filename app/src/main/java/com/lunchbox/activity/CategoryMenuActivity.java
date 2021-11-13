@@ -41,7 +41,7 @@ public class CategoryMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView listView = (RecyclerView) findViewById(R.id.list);
+        RecyclerView listView = findViewById(R.id.list);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         listView.setLayoutManager(layoutManager);
         listView.setAdapter(adapter);

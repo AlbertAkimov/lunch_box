@@ -19,6 +19,6 @@ public interface ProductController {
     Observable<List<Product>> getProductByCategoryMenuAndDeliveryDate(
             @Path("deliveryDate") String date, @Path("categoryMenuId") String categoryMenuId);
 
-    @GET("getImageProductById/{id}")
-    Observable<Product> getImageProductByCategoryMenuAndDeliveryDate(@Path("id") Long id);
+    @GET("product_image/{id}")
+    Observable<Product> getImageProductById(@Path("id") Long id);
 }
