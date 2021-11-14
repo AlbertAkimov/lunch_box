@@ -1,5 +1,6 @@
 package com.lunchbox.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +12,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.lunchbox.App;
 import com.lunchbox.activity.CartActivity;
 import com.lunchbox.activity.R;
+import com.lunchbox.domain.model.ElementProductCart;
 import com.lunchbox.domain.model.ProductCart;
 import com.lunchbox.util.ImageUtil;
 import com.lunchbox.view.ProductCartView;
@@ -30,17 +33,20 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class ProductCartAdapter extends ArrayAdapter<ProductCart> {
+public class ProductCartAdapter extends ArrayAdapter<ElementProductCart> {
 
     private final Context mContext;
     private final int mResource;
-    private List<ProductCart> productCartList;
+    private ProductCart productCart;
+    private TextView total;
 
-    public ProductCartAdapter(@NonNull Context context, int resource, @NonNull List<ProductCart> objects) {
+    public ProductCartAdapter(@NonNull Context context, int resource, @NonNull List<ElementProductCart> objects) {
         super(context, resource, objects);
         this.mContext = context;
         this.mResource = resource;
-        this.productCartList = objects;
+        productCart = ((App) context.getApplicationContext()).getProductCart();
+        total = ((Activity) context).findViewById(R.id.totalProductCart);
+        total.setText((String) productCart.getTotalSum().toString());
     }
 
     @NonNull
@@ -74,46 +80,19 @@ public class ProductCartAdapter extends ArrayAdapter<ProductCart> {
         productCartView.getNumber().setText((String) Objects.requireNonNull(getItem(position)).getNumber().toString());
 
         ImageButton increase = convertView.findViewById(R.id.increase);
-        increase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeNumberCurrentPosition(1L, position, productCartView);
-                setTotal();
-            }
+        increase.setOnClickListener(v -> {
+            productCart.changeItemQuantity(Objects.requireNonNull(getItem(position)), 1L);
+            total.setText((String) productCart.getTotalSum().toString());
+            notifyDataSetChanged();
         });
 
         ImageButton decrease = convertView.findViewById(R.id.decrease);
-        decrease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeNumberCurrentPosition(-1L, position, productCartView);
-                setTotal();
-            }
+        decrease.setOnClickListener(v -> {
+            productCart.changeItemQuantity(Objects.requireNonNull(getItem(position)), -1L);
+            total.setText((String) productCart.getTotalSum().toString());
+            notifyDataSetChanged();
         });
 
         return convertView;
-    }
-
-    public void setTotal() {
-
-        Long total = 0L;
-        for(ProductCart item : productCartList)
-            total += item.getNumber() * item.getProduct().getProductPrice();
-
-        CartActivity cartActivity = (CartActivity) mContext;
-        TextView mTotal = cartActivity.findViewById(R.id.totalProductCart);
-        mTotal.setText(String.valueOf(total) + " руб.");
-    }
-
-    public void changeNumberCurrentPosition(Long value, int position, ProductCartView view) {
-
-        ProductCart currentItem = ProductCartAdapter.this.getItem(position);
-        assert currentItem != null;
-        if(currentItem.getNumber() + value == 0)
-            ProductCartAdapter.this.remove(currentItem);
-        else
-            currentItem.setNumber(currentItem.getNumber() + value);
-
-        view.getNumber().setText((String) currentItem.getNumber().toString());
     }
 }

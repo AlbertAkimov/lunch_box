@@ -2,6 +2,7 @@ package com.lunchbox;
 
 import android.app.Application;
 
+import com.lunchbox.domain.model.ElementProductCart;
 import com.lunchbox.domain.model.ProductCart;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -24,13 +25,13 @@ import lombok.Setter;
 @Getter
 public class App extends Application {
 
-    private List<ProductCart> basketList;
+    private ProductCart productCart;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        basketList = new ArrayList<>();
+        productCart = new ProductCart();
 
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)

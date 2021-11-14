@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.lunchbox.App;
 import com.lunchbox.adapter.ProductCartAdapter;
-import com.lunchbox.domain.model.ProductCart;
+import com.lunchbox.domain.model.ElementProductCart;
 
 /**
  * @Authot: Albert Akimov
@@ -34,19 +34,10 @@ public class CartActivity extends AppCompatActivity {
 
         App app = (App) getApplication();
 
-        TextView total = findViewById(R.id.totalProductCart);
-
-        //TODO - Вынести из этого класс
-        Long totalSum = Long.valueOf(0);
-
-        for(ProductCart cart: app.getBasketList()) {
-            totalSum += cart.getNumber() * cart.getProduct().getProductPrice();
-        }
-
-        total.setText(totalSum.toString() + " руб.");
-        //TODO - Вынести из этого класс
-
-        adapter = new ProductCartAdapter(CartActivity.this, R.layout.activity_product_cart, app.getBasketList());
+        adapter = new ProductCartAdapter(
+                CartActivity.this,
+                R.layout.activity_product_cart,
+                app.getProductCart().getElements());
 
         ListView listView = findViewById(R.id.listViewCart);
         listView.setAdapter(adapter);
