@@ -1,11 +1,15 @@
 package com.lunchbox.service;
 
+import android.app.Activity;
 import android.content.Context;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lunchbox.activity.DeliveryDateActivity;
 import com.lunchbox.activity.MainActivity;
+import com.lunchbox.activity.R;
 import com.lunchbox.activity.RecoveryPasswordActivity;
 import com.lunchbox.controller.api.CallBackType;
 import com.lunchbox.domain.model.User;
@@ -60,24 +64,26 @@ public class UserService
     @Override
     public void accept(List<User> users, Throwable throwable) {
 
-        if(throwable != null)
+        ProgressBar progressBar = ((Activity) context).findViewById(R.id.progress_authentication);
+        progressBar.setVisibility(View.GONE);
+
+        if (throwable != null)
             Toast.makeText(context, throwable.getMessage(), Toast.LENGTH_SHORT).show();
         else {
 
             switch (callBackType) {
                 case LOGIN:
-                    if(users.isEmpty())
+                    if (users.isEmpty())
                         break;
                     User user = repository.getById(users.get(0).getId());
-                    if(user != null) {
-                        if(!user.equals(users.get(0))) {
-                            repository.save(users.get(0));
-                        }
-                    }
+                    if (user != null && !user.equals(users.get(0)))
+                        repository.update(users.get(0));
+                    else
+                        repository.save(users.get(0));
+
                     DeliveryDateActivity.start(context);
+                    ((Activity) context).finish();
                     break;
-                    //TODO - don't work
-                    //((Activity) context).finish();
 
                 case RESTORE_PASSWORD_BY_EMAIL:
                     RecoveryPasswordActivity.start(context);
