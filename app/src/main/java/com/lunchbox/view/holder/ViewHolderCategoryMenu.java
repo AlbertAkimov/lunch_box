@@ -33,8 +33,8 @@ public class ViewHolderCategoryMenu extends RecyclerView.ViewHolder {
 
     public void bind(@NonNull CategoryMenu categoryMenu) {
         this.categoryMenu = categoryMenu;
-        categoryMenuView.getName().setText(categoryMenu.getCategoryMenuName());
-        if (!categoryMenu.getCategoryMenuImage().isEmpty())
-            categoryMenuView.getImage().setImageBitmap(ImageUtil.getDecodeImage(categoryMenu.getCategoryMenuImage()));
+        categoryMenuView.getName().setText(categoryMenu.getName());
+        if (!categoryMenu.getImage().isEmpty())
+            categoryMenuView.getImage().setImageBitmap(ImageUtil.getDecodeImage(categoryMenu.getImage()));
     }
 }

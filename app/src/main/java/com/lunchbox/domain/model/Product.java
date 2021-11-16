@@ -16,9 +16,9 @@ import lombok.NoArgsConstructor;
 
 public class Product extends AbstractModel {
 
-    private String productName;
-    private Long productPrice;
-    private String productImage;
-    private String productDescription;
+    private String name;
+    private Long price;
+    private String image;
+    private String description;
 
 }

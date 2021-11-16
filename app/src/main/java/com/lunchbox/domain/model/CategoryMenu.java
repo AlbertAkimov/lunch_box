@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CategoryMenu extends AbstractModel {
 
-    private String categoryMenuName;
-    private String categoryMenuImage;
+    private String name;
+    private String image;
     private String date;
 }

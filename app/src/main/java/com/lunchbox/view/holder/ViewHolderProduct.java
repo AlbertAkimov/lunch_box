@@ -47,10 +47,10 @@ public class ViewHolderProduct extends RecyclerView.ViewHolder {
 
     public void bind(@NonNull Product product) {
         this.product = product;
-        productView.getProductName().setText(product.getProductName());
-        productView.getProductPrice().setText((String) product.getProductPrice().toString());
-        productView.getProductDescription().setText(product.getProductDescription());
-        if (!product.getProductImage().isEmpty())
-            productView.getProductImage().setImageBitmap(ImageUtil.getDecodeImage(product.getProductImage()));
+        productView.getProductName().setText(product.getName());
+        productView.getProductPrice().setText((String) product.getPrice().toString());
+        productView.getProductDescription().setText(product.getDescription());
+        if (!product.getImage().isEmpty())
+            productView.getProductImage().setImageBitmap(ImageUtil.getDecodeImage(product.getImage()));
     }
 }

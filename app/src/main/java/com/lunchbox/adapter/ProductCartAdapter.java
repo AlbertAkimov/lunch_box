@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.lunchbox.App;
-import com.lunchbox.activity.CartActivity;
 import com.lunchbox.activity.R;
 import com.lunchbox.domain.model.ElementProductCart;
 import com.lunchbox.domain.model.ProductCart;
@@ -73,10 +72,10 @@ public class ProductCartAdapter extends ArrayAdapter<ElementProductCart> {
         }
 
         productCartView.getImage().setImageBitmap(ImageUtil.getDecodeImage(
-                Objects.requireNonNull(getItem(position)).getProduct().getProductImage()));
+                Objects.requireNonNull(getItem(position)).getProduct().getImage()));
 
-        productCartView.getName().setText(Objects.requireNonNull(getItem(position)).getProduct().getProductName());
-        productCartView.getPrice().setText((String) Objects.requireNonNull(getItem(position)).getProduct().getProductPrice().toString());
+        productCartView.getName().setText(Objects.requireNonNull(getItem(position)).getProduct().getName());
+        productCartView.getPrice().setText((String) Objects.requireNonNull(getItem(position)).getProduct().getPrice().toString());
         productCartView.getNumber().setText((String) Objects.requireNonNull(getItem(position)).getNumber().toString());
 
         ImageButton increase = convertView.findViewById(R.id.increase);

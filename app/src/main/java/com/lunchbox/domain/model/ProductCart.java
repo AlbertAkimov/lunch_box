@@ -1,10 +1,7 @@
 package com.lunchbox.domain.model;
 
-import com.lunchbox.view.ProductCartView;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import lombok.Getter;
 
@@ -27,7 +24,7 @@ public class ProductCart extends AbstractModel {
 
     public void addElement(ElementProductCart element) {
         elements.add(element);
-        totalSum += element.getNumber() * element.getProduct().getProductPrice();
+        totalSum += element.getNumber() * element.getProduct().getPrice();
     }
 
     public void changeItemQuantity(ElementProductCart element, Long count) {
@@ -41,6 +38,6 @@ public class ProductCart extends AbstractModel {
 
         totalSum = 0D;
         for(ElementProductCart elem : elements)
-            totalSum += elem.getNumber() * elem.getProduct().getProductPrice();
+            totalSum += elem.getNumber() * elem.getProduct().getPrice();
     }
 }

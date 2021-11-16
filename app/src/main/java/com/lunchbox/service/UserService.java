@@ -76,10 +76,10 @@ public class UserService
                     if (users.isEmpty())
                         break;
                     User user = repository.getById(users.get(0).getId());
-                    if (user != null && !user.equals(users.get(0)))
-                        repository.update(users.get(0));
-                    else
+                    if (user == null)
                         repository.save(users.get(0));
+                    else if(!user.equals(users.get(0)))
+                        repository.update(users.get(0));
 
                     DeliveryDateActivity.start(context);
                     ((Activity) context).finish();

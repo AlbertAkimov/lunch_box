@@ -6,7 +6,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * @Authot: Albert Akimov
@@ -15,10 +15,10 @@ import retrofit2.http.Path;
  */
 public interface ProductController {
 
-    @GET("getProductsByCategoryMenuAndDeliveryDate/{deliveryDate}/{categoryMenuId}")
-    Observable<List<Product>> getProductByCategoryMenuAndDeliveryDate(
-            @Path("deliveryDate") String date, @Path("categoryMenuId") String categoryMenuId);
+    @GET("production_plan")
+    Observable<List<Product>> getProductsByCategoryId(
+            @Query("date") String date, @Query("category_id") String categoryId);
 
-    @GET("product_image/{id}")
-    Observable<Product> getImageProductById(@Path("id") Long id);
+    @GET("goods")
+    Observable<Product> getProductById(@Query("id") Long id);
 }

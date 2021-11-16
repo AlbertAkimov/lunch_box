@@ -10,7 +10,6 @@ import com.lunchbox.controller.api.CategoryController;
 import com.lunchbox.domain.model.CategoryMenu;
 
 import java.util.List;
-import java.util.Random;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -70,7 +69,7 @@ public class CategoryService extends BaseService<CategoryController, Object, Cat
     private Observable<CategoryMenu> getCategoryMenu(CategoryMenuAdapter adapter, String date) {
 
         return controller
-                .getDataByDeliveryDate(date)
+                .getCategoriesByDate(date)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap((Function<List<CategoryMenu>, ObservableSource<CategoryMenu>>) categoryMenus -> {
@@ -82,11 +81,11 @@ public class CategoryService extends BaseService<CategoryController, Object, Cat
     private Observable<CategoryMenu> getImageCategoryMenu(final CategoryMenu menu) {
 
         return controller
-                .getImageCategoryMenuById(menu.getId())
+                .getCategoryBuId(menu.getId())
                 .map(categoryMenu -> {
 /*                    int delay = ((new Random()).nextInt(5) + 1) * 1000;
                     Thread.sleep(delay);*/
-                    menu.setCategoryMenuImage(categoryMenu.getCategoryMenuImage());
+                    menu.setImage(categoryMenu.getImage());
                     return menu;
                 })
                 .subscribeOn(Schedulers.io());

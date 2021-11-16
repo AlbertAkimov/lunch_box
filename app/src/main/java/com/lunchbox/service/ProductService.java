@@ -10,7 +10,6 @@ import com.lunchbox.controller.api.ProductController;
 import com.lunchbox.domain.model.Product;
 
 import java.util.List;
-import java.util.Random;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -71,7 +70,7 @@ public class ProductService extends BaseService<ProductController, Object, Produ
     private Observable<Product> getProduct(ProductAdapter adapter, String date, String categoryId) {
 
         return controller
-                .getProductByCategoryMenuAndDeliveryDate(date, categoryId)
+                .getProductsByCategoryId(date, categoryId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap((Function<List<Product>, ObservableSource<Product>>) products -> {
@@ -83,11 +82,11 @@ public class ProductService extends BaseService<ProductController, Object, Produ
     private Observable<Product> getImageProduct(final Product product) {
 
         return controller
-                .getImageProductById(product.getId())
+                .getProductById(product.getId())
                 .map(products -> {
 /*                    int delay = ((new Random()).nextInt(5) + 1) * 1000;
                     Thread.sleep(delay);*/
-                    product.setProductImage(products.getProductImage());
+                    product.setImage(products.getImage());
                     return product;
                 })
                 .subscribeOn(Schedulers.io());
