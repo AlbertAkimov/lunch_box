@@ -46,7 +46,7 @@ public class ProductActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
         listView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        ProductService service = new ProductService(getApplicationContext());
+        ProductService service = new ProductService(this);
         service.getListProductsAndImageOfProducts(
                 adapter,
                 disposable,

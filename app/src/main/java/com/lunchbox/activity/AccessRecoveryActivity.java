@@ -38,7 +38,7 @@ public class AccessRecoveryActivity extends AppCompatActivity {
         Button restore = findViewById(R.id.send_email);
         restore.setOnClickListener(view -> {
 
-            UserService service = new UserService(getApplicationContext());
+            UserService service = new UserService(this);
             service.restorePasswordByEmail(email.getText().toString(), disposable);
 
         });

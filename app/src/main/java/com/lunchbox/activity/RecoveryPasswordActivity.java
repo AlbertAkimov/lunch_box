@@ -46,7 +46,7 @@ public class RecoveryPasswordActivity extends AppCompatActivity {
         Button send = findViewById(R.id.change_password);
         send.setOnClickListener(view -> {
 
-            UserService service = new UserService(getApplicationContext());
+            UserService service = new UserService(this);
             service.changePasswordByRecoveryCode(
                     SHAUtil.hashPassword(password.getText().toString()),
                     recoveryCode.getText().toString(),

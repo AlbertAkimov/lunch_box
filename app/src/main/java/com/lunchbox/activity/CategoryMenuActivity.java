@@ -46,7 +46,7 @@ public class CategoryMenuActivity extends AppCompatActivity {
         listView.setLayoutManager(layoutManager);
         listView.setAdapter(adapter);
 
-        CategoryService service = new CategoryService(getApplicationContext());
+        CategoryService service = new CategoryService(this);
         service.getListCategoryAndImageOfCategory(
                 adapter,
                 disposable,
