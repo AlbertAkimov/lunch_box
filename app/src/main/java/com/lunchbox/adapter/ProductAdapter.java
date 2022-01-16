@@ -25,17 +25,19 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ProductAdapter extends RecyclerView.Adapter<ViewHolderProduct> {
+public class ProductAdapter extends RecyclerView.Adapter<ViewHolderProduct> implements BaseAdapter<Product> {
 
     private ArrayList<Product> products = new ArrayList<>();
 
+    @Override
     @SuppressLint("NotifyDataSetChanged")
-    public void setData(List<Product> products) {
+    public void setData(List<Product> data) {
         this.products.clear();
-        this.products.addAll(products);
+        this.products.addAll(data);
         notifyDataSetChanged();
     }
 
+    @Override
     public void updateData(Product data) {
         products.set(products.indexOf(data), data);
         notifyItemChanged(products.indexOf(data));

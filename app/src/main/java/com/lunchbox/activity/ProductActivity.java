@@ -47,7 +47,7 @@ public class ProductActivity extends AppCompatActivity {
         listView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         ProductService service = new ProductService(this);
-        service.getListProductsAndImageOfProducts(
+        service.execute(
                 adapter,
                 disposable,
                 Objects.requireNonNull(getIntent().getExtras()).getString(EXTRA_DELIVERY_DATE),

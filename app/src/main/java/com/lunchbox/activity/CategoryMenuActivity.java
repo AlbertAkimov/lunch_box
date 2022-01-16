@@ -47,7 +47,7 @@ public class CategoryMenuActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         CategoryService service = new CategoryService(this);
-        service.getListCategoryAndImageOfCategory(
+        service.execute(
                 adapter,
                 disposable,
                 Objects.requireNonNull(getIntent().getExtras()).getString(EXTRA_DELIVERY_DATE));

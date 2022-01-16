@@ -64,8 +64,9 @@ public class UserService
     @Override
     public void accept(List<User> users, Throwable throwable) {
 
-        ProgressBar progressBar = ((Activity) context).findViewById(R.id.progress_authentication);
-        progressBar.setVisibility(View.GONE);
+        //TODO - исправить для формы авторизации, для остальных исключить.
+        //ProgressBar progressBar = ((Activity) context).findViewById(R.id.progress_authentication);
+        //progressBar.setVisibility(View.GONE);
 
         if (throwable != null)
             Toast.makeText(context, throwable.getMessage(), Toast.LENGTH_SHORT).show();

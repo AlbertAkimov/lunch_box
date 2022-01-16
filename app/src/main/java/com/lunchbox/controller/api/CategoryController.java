@@ -15,11 +15,12 @@ import retrofit2.http.Query;
  * @Description:
  */
 
-public interface CategoryController {
+public interface CategoryController extends BaseController {
 
     @GET("production_plan")
     Observable<List<CategoryMenu>> getCategoriesByDate(@Query("date") String date);
 
+    @Override
     @GET("category")
-    Observable<CategoryMenu> getCategoryBuId(@Query("id") Long id);
+    Observable<CategoryMenu> getById(@Query("id") Long id);
 }

@@ -15,7 +15,7 @@ import com.lunchbox.repository.UserRepository;
  * @Description:
  */
 
-@Database(entities = {User.class}, version = 2)
+@Database(entities = {User.class}, version = 4)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract UserRepository userRepository();

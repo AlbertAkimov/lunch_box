@@ -67,7 +67,7 @@ public class WebServiceHelper {
                 .authenticator(getBasicAuth(username, password));
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.level(HttpLoggingInterceptor.Level.BODY);
+        logging.level(HttpLoggingInterceptor.Level.BASIC);
         httpClient.addInterceptor(logging);
 
         return httpClient.build();
