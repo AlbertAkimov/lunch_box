@@ -22,10 +22,10 @@ public class CategoryService extends BaseService<CategoryController, Object, Cat
         super(context, CategoryController.class, Object.class);
     }
 
-    public void execute(CategoryMenuAdapter adapter, CompositeDisposable disposable, String date) {
+    public void getCategoriesByDate(CategoryMenuAdapter adapter, CompositeDisposable disposable, String date) {
         execute(adapter, disposable, controller.getCategoriesByDate(date));
     }
 
     @Override
-    public void accept(List<CategoryMenu> categoryMenus, Throwable throwable) throws Exception {}
+    public void accept(List<CategoryMenu> categoryMenus, Throwable throwable) {}
 }

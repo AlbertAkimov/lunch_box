@@ -1,5 +1,8 @@
 package com.lunchbox.domain.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,4 +24,12 @@ public class Product extends AbstractModel {
     private String image;
     private String description;
 
+    @Override
+    public List<String> getFieldsToAsyncUpdate() {
+
+        ArrayList<String> fields = new ArrayList<>();
+        fields.add("image");
+
+        return fields;
+    }
 }

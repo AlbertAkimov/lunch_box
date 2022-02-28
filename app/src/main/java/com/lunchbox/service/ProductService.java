@@ -33,10 +33,10 @@ public class ProductService extends BaseService<ProductController, Object, Produ
         super(context, ProductController.class, Object.class);
     }
 
-    public void execute(ProductAdapter adapter, CompositeDisposable disposable, String date, String categoryId) {
+    public void getProductsByCategoryId(ProductAdapter adapter, CompositeDisposable disposable, String date, String categoryId) {
         execute(adapter, disposable, controller.getProductsByCategoryId(date, categoryId));
     }
 
     @Override
-    public void accept(List<Product> products, Throwable throwable) throws Exception {}
+    public void accept(List<Product> products, Throwable throwable) {}
 }

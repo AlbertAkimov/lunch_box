@@ -4,11 +4,9 @@ import static android.content.Context.ACTIVITY_SERVICE;
 
 import android.app.ActivityManager;
 import android.content.Context;
-import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 
 import com.lunchbox.adapter.BaseAdapter;
 import com.lunchbox.controller.api.BaseController;
@@ -17,7 +15,6 @@ import com.lunchbox.domain.model.AbstractModel;
 
 import java.lang.reflect.Field;
 import java.util.List;
-import java.util.Random;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -82,7 +79,6 @@ public abstract class BaseService<C extends BaseController, R, T extends Abstrac
                     public void onError(@NonNull Throwable e) {
                         ActivityManager am = (ActivityManager)context.getSystemService(ACTIVITY_SERVICE);
                         List< ActivityManager.RunningTaskInfo > taskInfo = am.getRunningTasks(1);
-                        taskInfo.get(0).topActivity.getClassName();
                         Log.e( taskInfo.get(0).topActivity.getClassName() + " ---- ", e.getMessage());
                     }
 
@@ -104,22 +100,23 @@ public abstract class BaseService<C extends BaseController, R, T extends Abstrac
     private Observable<T> getDataById(T object) {
         return controller.getById(object.getId()).map(obj -> {
 
-/*            int delay = ((new Random()).nextInt(5) + 1) * 2000;
+            /* int delay = ((new Random()).nextInt(5) + 1) * 2000;
             Thread.sleep(delay);*/
 
-            try {
-                Field field = object.getClass().getDeclaredField("image");
-                Field field1 = obj.getClass().getDeclaredField("image");
-                field.setAccessible(true);
-                field1.setAccessible(true);
-                field.set(object, field1.get(obj));
+            for (String fieldName : object.getFieldsToAsyncUpdate()) {
+                try {
+                    Field field = object.getClass().getDeclaredField(fieldName);
+                    Field field1 = obj.getClass().getDeclaredField(fieldName);
+                    field.setAccessible(true);
+                    field1.setAccessible(true);
+                    field.set(object, field1.get(obj));
 
 
-            } catch (NoSuchFieldException e) {
-                ActivityManager am = (ActivityManager) context.getSystemService(ACTIVITY_SERVICE);
-                List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
-                taskInfo.get(0).topActivity.getClassName();
-                Log.e(taskInfo.get(0).topActivity.getClassName() + " ---- ", e.getMessage());
+                } catch (NoSuchFieldException e) {
+                    ActivityManager am = (ActivityManager) context.getSystemService(ACTIVITY_SERVICE);
+                    List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
+                    Log.e(taskInfo.get(0).topActivity.getClassName() + " ---- ", e.getMessage());
+                }
             }
             return object;
 

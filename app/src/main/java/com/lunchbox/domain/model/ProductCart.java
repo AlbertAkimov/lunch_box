@@ -40,4 +40,9 @@ public class ProductCart extends AbstractModel {
         for(ElementProductCart elem : elements)
             totalSum += elem.getNumber() * elem.getProduct().getPrice();
     }
+
+    @Override
+    public List<String> getFieldsToAsyncUpdate() {
+        return new ArrayList<>();
+    }
 }

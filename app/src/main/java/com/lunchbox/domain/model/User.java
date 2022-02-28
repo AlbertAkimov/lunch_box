@@ -2,6 +2,9 @@ package com.lunchbox.domain.model;
 
 import androidx.room.Entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,4 +26,8 @@ public class User extends AbstractModel {
     private String email;
     private String personalNumber;
 
+    @Override
+    public List<String> getFieldsToAsyncUpdate() {
+        return new ArrayList<>();
+    }
 }
