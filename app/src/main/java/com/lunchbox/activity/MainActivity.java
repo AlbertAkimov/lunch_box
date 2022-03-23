@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.lunchbox.App;
 import com.lunchbox.service.UserService;
 import com.lunchbox.util.SHAUtil;
 
@@ -36,16 +37,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
-        findViewById(R.id.progress_authentication).setVisibility(View.VISIBLE);
 
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
 
+        App app = (App) getApplication();
+
         UserService service = new UserService(this);
-        service.autoLogin(disposable, username);
+
+        if(app.getAuthUser() != null) {
+            findViewById(R.id.progress_authentication).setVisibility(View.VISIBLE);
+            service.autoLogin(disposable, username);
+        }
 
         Button login = findViewById(R.id.login);
         login.setOnClickListener(view -> {
+
+            findViewById(R.id.progress_authentication).setVisibility(View.VISIBLE);
 
             service.login(
                     username.getText().toString(),
@@ -64,5 +72,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         disposable.dispose();
         super.onDestroy();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        findViewById(R.id.progress_authentication).setVisibility(View.GONE);
     }
 }

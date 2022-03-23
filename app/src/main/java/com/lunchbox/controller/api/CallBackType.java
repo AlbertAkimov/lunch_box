@@ -10,6 +10,7 @@ public enum CallBackType {
 
     NONE,
     LOGIN,
+    LOGOUT,
     RESTORE_PASSWORD_BY_EMAIL,
     CHANGE_PASSWORD_BY_RECOVERY_CODE
 

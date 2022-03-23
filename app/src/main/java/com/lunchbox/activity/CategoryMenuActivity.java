@@ -3,6 +3,7 @@ package com.lunchbox.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,7 +54,12 @@ public class CategoryMenuActivity extends AppCompatActivity {
                 Objects.requireNonNull(getIntent().getExtras()).getString(EXTRA_DELIVERY_DATE));
 
         Button cart = findViewById(R.id.footer_card);
+        Button profile = findViewById(R.id.footer_my_profile);
         cart.setOnClickListener(view -> CartActivity.start(view.getContext()));
+        profile.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override

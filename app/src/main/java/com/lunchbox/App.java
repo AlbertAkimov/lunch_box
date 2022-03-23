@@ -2,8 +2,11 @@ package com.lunchbox;
 
 import android.app.Application;
 
+import com.lunchbox.database.AppDatabase;
 import com.lunchbox.domain.model.ElementProductCart;
 import com.lunchbox.domain.model.ProductCart;
+import com.lunchbox.domain.model.User;
+import com.lunchbox.repository.UserRepository;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -26,6 +29,7 @@ import lombok.Setter;
 public class App extends Application {
 
     private ProductCart productCart;
+    private User authUser;
 
     @Override
     public void onCreate() {
@@ -44,5 +48,11 @@ public class App extends Application {
                 .build();
 
         ImageLoader.getInstance().init(config);
+
+        UserRepository repository = AppDatabase.getInstance(this).getRepository(UserRepository.class);
+        List<User> users = repository.getAll();
+
+        if(!users.isEmpty())
+            authUser = users.get(0);
     }
 }

@@ -7,6 +7,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lunchbox.App;
 import com.lunchbox.activity.DeliveryDateActivity;
 import com.lunchbox.activity.MainActivity;
 import com.lunchbox.activity.R;
@@ -51,6 +52,14 @@ public class UserService
         disposable.add(execute(controller.login(username, password)));
     }
 
+    public boolean logout(User currentUser) {
+
+        repository.delete(currentUser);
+        User user = repository.getById(currentUser.getId());
+
+        return user == null;
+    }
+
     public void restorePasswordByEmail(String email, CompositeDisposable disposable) {
         callBackType = CallBackType.RESTORE_PASSWORD_BY_EMAIL;
         disposable.add(execute(controller.restorePasswordByEmail(email)));
@@ -64,12 +73,10 @@ public class UserService
     @Override
     public void accept(List<User> users, Throwable throwable) {
 
-        //TODO - исправить для формы авторизации, для остальных исключить.
-        //ProgressBar progressBar = ((Activity) context).findViewById(R.id.progress_authentication);
-        //progressBar.setVisibility(View.GONE);
-
-        if (throwable != null)
+        if (throwable != null) {
             Toast.makeText(context, throwable.getMessage(), Toast.LENGTH_SHORT).show();
+            ((Activity) context).recreate();
+        }
         else {
 
             switch (callBackType) {
@@ -81,6 +88,8 @@ public class UserService
                         repository.save(users.get(0));
                     else if(!user.equals(users.get(0)))
                         repository.update(users.get(0));
+
+                    ((App) context.getApplicationContext()).setAuthUser(users.get(0));
 
                     DeliveryDateActivity.start(context);
                     ((Activity) context).finish();
