@@ -2,6 +2,7 @@ package com.lunchbox.activity;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,14 @@ public class ProfileActivity extends AppCompatActivity {
 
         UserService userService = new UserService(this);
         App app = (App) getApplication();
+
+        TextView username = findViewById(R.id.profile_username);
+        TextView email = findViewById(R.id.profile_email);
+        TextView personalNumber = findViewById(R.id.profile_personalNumber);
+
+        username.setText(app.getAuthUser().getUsername());
+        email.setText(app.getAuthUser().getEmail());
+        personalNumber.setText(app.getAuthUser().getPersonalNumber());
 
         Button logout = findViewById(R.id.logout);
         logout.setOnClickListener(v -> {

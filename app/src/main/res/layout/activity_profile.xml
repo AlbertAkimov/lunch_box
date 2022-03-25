@@ -1,16 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="#FFFFFF"
+    app:cardCornerRadius="8dp">
 
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Выйти"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="341dp">
+        android:layout_weight="100"
+        android:orientation="vertical">
 
-    </Button>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/profile_username_header"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="0"
+            android:gravity="left"
+            android:text="Имя пользователя"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/profile_username"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="0"
+            android:gravity="left"
+            android:text="profile_username"
+
+            android:textSize="20dp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/black"
+            android:layout_height="1sp"/>
+
+        <TextView
+            android:id="@+id/profile_email_header"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="0"
+            android:gravity="left"
+            android:text="Адрес электронной почты"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/profile_email"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="0"
+            android:gravity="left"
+            android:text="profile_email"
+            android:textSize="20dp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/black"
+            android:layout_height="1sp"/>
+
+        <TextView
+            android:id="@+id/profile_personalNumber_header"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="0"
+            android:gravity="left"
+            android:text="Табельный номер"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/profile_personalNumber"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="0"
+            android:gravity="left"
+            android:text="profile_PersonalNumber"
+            android:textSize="20dp"
+            android:textStyle="normal">
+
+        </TextView>
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/black"
+            android:layout_height="1sp"/>
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Выйти"
+            tools:layout_editor_absoluteX="141dp"
+            tools:layout_editor_absoluteY="341dp"/>
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>
